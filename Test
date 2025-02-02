@@ -1,0 +1,4 @@
+git mv daxxmusic zyromusic
+
+
+grep -rl 'daxxmusic' . | xargs sed -i 's/daxxmusic/zyromusic/g'
