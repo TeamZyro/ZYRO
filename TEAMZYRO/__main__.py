@@ -11,7 +11,7 @@ from TEAMZYRO.misc import sudo
 from TEAMZYRO.plugins import ALL_MODULES
 from TEAMZYRO.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
-
+from TEAMZYRO.core.application import application
 
 async def init():
     if (
@@ -49,9 +49,7 @@ async def init():
     except:
         pass
     await ZYRO.decorators()
-    LOGGER("TEAMZYRO").info(
-        "╔═════ஜ۩۞۩ஜ════╗\n  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗧𝗘𝗔𝗠𝗭𝗬𝗥𝗢☠︎︎\n╚═════ஜ۩۞۩ஜ════╝"
-    )
+    
     await idle()
     await app.stop()
     await userbot.stop()
@@ -59,4 +57,9 @@ async def init():
 
 
 if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(init())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(init())
+    application.run_polling(drop_pending_updates=True)
+    LOGGER("TEAMZYRO").info(
+        "╔═════ஜ۩۞۩ஜ════╗\n  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗧𝗘𝗔𝗠𝗭𝗬𝗥𝗢☠︎︎\n╚═════ஜ۩۞۩ஜ════╝"
+    )
