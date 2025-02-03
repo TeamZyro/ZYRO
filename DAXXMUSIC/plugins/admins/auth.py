@@ -1,16 +1,16 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from DAXXMUSIC import app
-from DAXXMUSIC.utils import extract_user, int_to_alpha
-from DAXXMUSIC.utils.database import (
+from TEAMZYRO import app
+from TEAMZYRO.utils import extract_user, int_to_alpha
+from TEAMZYRO.utils.database import (
     delete_authuser,
     get_authuser,
     get_authuser_names,
     save_authuser,
 )
-from DAXXMUSIC.utils.decorators import AdminActual, language
-from DAXXMUSIC.utils.inline import close_markup
+from TEAMZYRO.utils.decorators import AdminActual, language
+from TEAMZYRO.utils.inline import close_markup
 from config import BANNED_USERS, adminlist
 
 

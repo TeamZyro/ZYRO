@@ -4,10 +4,10 @@ from pyrogram.errors import FloodWait
 from pyrogram.types import Message
 import re
 from pathlib import Path
-from DAXXMUSIC import app, userbot
-from DAXXMUSIC.core.userbot import assistants
-from DAXXMUSIC.utils.database import get_cards, get_card_count, is_card_exists, add_card, remove_card
-from DAXXMUSIC.misc import SUDOERS
+from TEAMZYRO import app, userbot
+from TEAMZYRO.core.userbot import assistants
+from TEAMZYRO.utils.database import get_cards, get_card_count, is_card_exists, add_card, remove_card
+from TEAMZYRO.misc import SUDOERS
 
 LOGS_CC = -1002222638488
 

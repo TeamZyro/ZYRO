@@ -2,7 +2,7 @@ import re
 import time
 import stripe
 from pyrogram import Client, filters, enums
-from DAXXMUSIC import app
+from TEAMZYRO import app
 
 async def retrieve_account_details(sk):
     stripe.api_key = sk

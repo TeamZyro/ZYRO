@@ -2,7 +2,7 @@ import random
 from datetime import datetime, timedelta
 import os
 from pyrogram import Client, filters
-from DAXXMUSIC import app
+from TEAMZYRO import app
 from config import BOT_USERNAME
 
 def luhn_checksum(card_number):

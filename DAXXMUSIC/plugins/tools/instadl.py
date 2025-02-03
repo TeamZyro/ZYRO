@@ -1,7 +1,7 @@
 from telegram import Update, Bot
 import httpx
 
-from DAXXMUSIC import app
+from TEAMZYRO import app
 from pyrogram import filters
 
 

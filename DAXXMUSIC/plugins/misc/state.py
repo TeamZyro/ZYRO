@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 import pycountry
-from DAXXMUSIC import app 
+from TEAMZYRO import app 
 
 @app.on_message(filters.command("get_states"))
 def get_states(client, message):

@@ -9,9 +9,9 @@ from pyrogram.errors import (
 )
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from DAXXMUSIC import YouTube, app
-from DAXXMUSIC.misc import SUDOERS
-from DAXXMUSIC.utils.database import (
+from TEAMZYRO import YouTube, app
+from TEAMZYRO.misc import SUDOERS
+from TEAMZYRO.utils.database import (
     get_assistant,
     get_cmode,
     get_lang,
@@ -20,7 +20,7 @@ from DAXXMUSIC.utils.database import (
     is_active_chat,
     is_maintenance,
 )
-from DAXXMUSIC.utils.inline import botplaylist_markup
+from TEAMZYRO.utils.inline import botplaylist_markup
 from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist
 from strings import get_string
 
@@ -37,7 +37,7 @@ def PlayWrapper(command):
                     [
                         InlineKeyboardButton(
                             text="ʜᴏᴡ ᴛᴏ ғɪx ?",
-                            callback_data="DAXXmousAdmin",
+                            callback_data="ZYROmousAdmin",
                         ),
                     ]
                 ]

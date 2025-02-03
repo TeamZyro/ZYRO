@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import random
 import requests
-from DAXXMUSIC import app 
+from TEAMZYRO import app 
 
 SUPPORT_CHAT = "ALLTYPECC"
 

@@ -1,11 +1,11 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from DAXXMUSIC import YouTube, app
-from DAXXMUSIC.core.call import DAXX
-from DAXXMUSIC.misc import db
-from DAXXMUSIC.utils import AdminRightsCheck, seconds_to_min
-from DAXXMUSIC.utils.inline import close_markup
+from TEAMZYRO import YouTube, app
+from TEAMZYRO.core.call import ZYRO
+from TEAMZYRO.misc import db
+from TEAMZYRO.utils import AdminRightsCheck, seconds_to_min
+from TEAMZYRO.utils.inline import close_markup
 from config import BANNED_USERS
 
 
@@ -56,7 +56,7 @@ async def seek_comm(cli, message: Message, _, chat_id):
     if "index_" in file_path:
         file_path = playing[0]["vidid"]
     try:
-        await DAXX.seek_stream(
+        await ZYRO.seek_stream(
             chat_id,
             file_path,
             seconds_to_min(to_seek),

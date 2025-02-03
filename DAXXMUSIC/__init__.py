@@ -1,8 +1,8 @@
-from DAXXMUSIC.core.bot import DAXX
-from DAXXMUSIC.core.dir import dirr
-from DAXXMUSIC.core.git import git
-from DAXXMUSIC.core.userbot import Userbot
-from DAXXMUSIC.misc import dbb, heroku
+from TEAMZYRO.core.bot import ZYRO
+from TEAMZYRO.core.dir import dirr
+from TEAMZYRO.core.git import git
+from TEAMZYRO.core.userbot import Userbot
+from TEAMZYRO.misc import dbb, heroku
 from pyrogram import Client
 from SafoneAPI import SafoneAPI
 from .logging import LOGGER
@@ -12,7 +12,7 @@ git()
 dbb()
 heroku()
 
-app = DAXX()
+app = ZYRO()
 api = SafoneAPI()
 userbot = Userbot()
 

@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import urllib.parse
 import time
 from pyrogram import Client, filters
-from DAXXMUSIC import app
+from TEAMZYRO import app
 # Assuming 'app' is your Pyrogram Client instance
 
 def google_dork(dork_query, num_results=10):

@@ -1,15 +1,15 @@
 from typing import Union
 from pyrogram import filters, types
 from pyrogram.types import InlineKeyboardMarkup, Message, InlineKeyboardButton
-from DAXXMUSIC import app
-from DAXXMUSIC.utils import help_pannel
-from DAXXMUSIC.utils.database import get_lang
-from DAXXMUSIC.utils.decorators.language import LanguageStart, languageCB
-from DAXXMUSIC.utils.inline.help import help_back_markup, private_help_panel
+from TEAMZYRO import app
+from TEAMZYRO.utils import help_pannel
+from TEAMZYRO.utils.database import get_lang
+from TEAMZYRO.utils.decorators.language import LanguageStart, languageCB
+from TEAMZYRO.utils.inline.help import help_back_markup, private_help_panel
 from config import BANNED_USERS, START_IMG_URL, SUPPORT_CHAT
 from strings import get_string, helpers
-from DAXXMUSIC.utils.stuffs.buttons import BUTTONS
-from DAXXMUSIC.utils.stuffs.helper import Helper
+from TEAMZYRO.utils.stuffs.buttons import BUTTONS
+from TEAMZYRO.utils.stuffs.helper import Helper
 
 @app.on_message(filters.command(["help"]) & filters.private & ~BANNED_USERS)
 @app.on_callback_query(filters.regex("settings_back_helper") & ~BANNED_USERS)

@@ -3,7 +3,7 @@ import requests
 import random
 import string
 from pyrogram import filters
-from DAXXMUSIC import app as Checker
+from TEAMZYRO import app as Checker
 from config import BOT_USERNAME
 import time
 import re

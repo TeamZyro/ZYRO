@@ -11,8 +11,8 @@ from pyrogram.types import Message
 from youtubesearchpython.__future__ import VideosSearch
 
 
-from DAXXMUSIC.utils.database import is_on_off
-from DAXXMUSIC.utils.formatters import time_to_seconds
+from TEAMZYRO.utils.database import is_on_off
+from TEAMZYRO.utils.formatters import time_to_seconds
 
 
 def cookies():

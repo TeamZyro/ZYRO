@@ -1,9 +1,9 @@
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from DAXXMUSIC import app
-from DAXXMUSIC.misc import SUDOERS, db
-from DAXXMUSIC.utils.database import (
+from TEAMZYRO import app
+from TEAMZYRO.misc import SUDOERS, db
+from TEAMZYRO.utils.database import (
     get_authuser_names,
     get_cmode,
     get_lang,
@@ -44,7 +44,7 @@ def AdminRightsCheck(mystic):
                     [
                         InlineKeyboardButton(
                             text="ʜᴏᴡ ᴛᴏ ғɪx ?",
-                            callback_data="DAXXmousAdmin",
+                            callback_data="ZYROmousAdmin",
                         ),
                     ]
                 ]
@@ -140,7 +140,7 @@ def AdminActual(mystic):
                     [
                         InlineKeyboardButton(
                             text="ʜᴏᴡ ᴛᴏ ғɪx ?",
-                            callback_data="DAXXmousAdmin",
+                            callback_data="ZYROmousAdmin",
                         ),
                     ]
                 ]

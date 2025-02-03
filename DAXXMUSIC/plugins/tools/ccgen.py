@@ -1,6 +1,6 @@
 import re
 from pyrogram import filters, enums
-from DAXXMUSIC import app
+from TEAMZYRO import app
 
 import io
 import random

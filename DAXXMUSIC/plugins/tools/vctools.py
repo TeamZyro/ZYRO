@@ -6,13 +6,13 @@ from pyrogram import Client, filters
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
-from DAXXMUSIC.utils.database import *
+from TEAMZYRO.utils.database import *
 from pyrogram.raw.functions.phone import CreateGroupCall, DiscardGroupCall
 from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant, ChatAdminRequired
-from DAXXMUSIC import app, Userbot
+from TEAMZYRO import app, Userbot
 from typing import List, Union
 from pyrogram import filters
-from DAXXMUSIC.core.call import DAXX
+from TEAMZYRO.core.call import ZYRO
 from pyrogram.types import VideoChatEnded, Message
 from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
@@ -20,9 +20,9 @@ from pytgcalls.exceptions import (NoActiveGroupCall, TelegramServerError, Alread
 
 @app.on_message(filters.command(["vcinfo"], ["/", "!"]))
 async def strcall(client, message):
-    assistant = await group_assistant(DAXX, message.chat.id)
+    assistant = await group_assistant(ZYRO, message.chat.id)
     try:
-        await assistant.join_group_call(message.chat.id, AudioPiped("./DAXXMUSIC/assets/call.mp3"), stream_type=StreamType().pulse_stream)
+        await assistant.join_group_call(message.chat.id, AudioPiped("./TEAMZYRO/assets/call.mp3"), stream_type=StreamType().pulse_stream)
         text = "- Beloveds in the call 🫶 :\n\n"
         participants = await assistant.get_participants(message.chat.id)
         k = 0

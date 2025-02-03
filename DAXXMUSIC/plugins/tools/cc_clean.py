@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 import re
 from io import BytesIO
-from DAXXMUSIC import app
+from TEAMZYRO import app
 
 def filter_bin(input_text):
     pattern = r'\d{15,16}\D*\d{2}\D*\d{2,4}\D*\d{3,4}'

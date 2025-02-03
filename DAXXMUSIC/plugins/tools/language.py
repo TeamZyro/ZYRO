@@ -2,9 +2,9 @@ from pykeyboard import InlineKeyboard
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, Message
 
-from DAXXMUSIC import app
-from DAXXMUSIC.utils.database import get_lang, set_lang
-from DAXXMUSIC.utils.decorators import ActualAdminCB, language, languageCB
+from TEAMZYRO import app
+from TEAMZYRO.utils.database import get_lang, set_lang
+from TEAMZYRO.utils.decorators import ActualAdminCB, language, languageCB
 from config import BANNED_USERS
 from strings import get_string, languages_present
 

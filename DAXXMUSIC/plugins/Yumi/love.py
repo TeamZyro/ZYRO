@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 import random
-from DAXXMUSIC import app
+from TEAMZYRO import app
 
 def get_random_message(love_percentage):
     if love_percentage <= 30:

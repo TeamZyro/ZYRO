@@ -4,7 +4,7 @@ import pyfiglet
 from random import choice
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from pyrogram.handlers import MessageHandler
-from DAXXMUSIC import app
+from TEAMZYRO import app
 def figle(text):
     x = pyfiglet.FigletFont.getFonts()
     font = choice(x)
@@ -18,7 +18,7 @@ async def echo(bot, message):
     try:
         text = message.text.split(' ',1)[1]
     except IndexError:
-        return await message.reply_text("Example:\n\n`/figlet DAXX PAPA `")
+        return await message.reply_text("Example:\n\n`/figlet ZYRO PAPA `")
     kul_text, keyboard = figle(text)
     await message.reply_text(f"ʜᴇʀᴇ ɪs ʏᴏᴜʀ ғɪɢʟᴇᴛ :\n<pre>{kul_text}</pre>", quote=True, reply_markup=keyboard)
 
@@ -32,4 +32,4 @@ async def figlet_handler(Client, query: CallbackQuery):
 __mod_name__ = "Fɪɢʟᴇᴛ" 
 __help__="""
 ❍ /figlet*:* ᴍᴀᴋᴇs ғɪɢʟᴇᴛ ᴏғ ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ
-Example:\n\n`/figlet DAXX PAPA `"""
+Example:\n\n`/figlet ZYRO PAPA `"""

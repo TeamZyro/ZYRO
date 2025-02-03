@@ -1,7 +1,7 @@
 import re
 from pyrogram import filters
 import random
-from DAXXMUSIC import app
+from TEAMZYRO import app
 
 
 @app.on_message(filters.command(["gn","n","oodnight","ood Night","ood night"], prefixes=["/","g","G"]))

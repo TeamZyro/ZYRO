@@ -1,11 +1,11 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from DAXXMUSIC import app
-from DAXXMUSIC.misc import SUDOERS
-from DAXXMUSIC.utils.database import add_gban_user, remove_gban_user
-from DAXXMUSIC.utils.decorators.language import language
-from DAXXMUSIC.utils.extraction import extract_user
+from TEAMZYRO import app
+from TEAMZYRO.misc import SUDOERS
+from TEAMZYRO.utils.database import add_gban_user, remove_gban_user
+from TEAMZYRO.utils.decorators.language import language
+from TEAMZYRO.utils.extraction import extract_user
 from config import BANNED_USERS
 
 

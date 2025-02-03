@@ -7,10 +7,10 @@ from PIL import Image
 from pyrogram import filters
 from pyrogram.types import Message
 
-from DAXXMUSIC import app
-from DAXXMUSIC.utils.errors import capture_err
+from TEAMZYRO import app
+from TEAMZYRO.utils.errors import capture_err
 
-from DAXXMUSIC.core.sections import section
+from TEAMZYRO.core.sections import section
 
 
 async def convert(
@@ -37,7 +37,7 @@ async def convert(
         img.save(img_path, "JPEG", quality=100)
 
     pdf = BytesIO(img2pdf.convert(documents))
-    pdf.name = "DAXX.pdf"
+    pdf.name = "ZYRO.pdf"
 
     if len(main_message.command) >= 2:
         names = main_message.text.split(None, 1)[1]

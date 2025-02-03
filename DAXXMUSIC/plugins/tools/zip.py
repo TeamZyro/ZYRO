@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 import os
 import zipfile
-from DAXXMUSIC import app
+from TEAMZYRO import app
 
 
 def zip_file(file_path, zip_file_path):

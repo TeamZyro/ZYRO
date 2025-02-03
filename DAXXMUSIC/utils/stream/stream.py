@@ -5,15 +5,15 @@ from typing import Union
 from pyrogram.types import InlineKeyboardMarkup
 
 import config
-from DAXXMUSIC import Carbon, YouTube, app
-from DAXXMUSIC.core.call import DAXX
-from DAXXMUSIC.misc import db
-from DAXXMUSIC.utils.database import add_active_video_chat, is_active_chat
-from DAXXMUSIC.utils.exceptions import AssistantErr
-from DAXXMUSIC.utils.inline import aq_markup, close_markup, stream_markup
-from DAXXMUSIC.utils.pastebin import DAXXBin
-from DAXXMUSIC.utils.stream.queue import put_queue, put_queue_index
-from DAXXMUSIC.utils.thumbnails import get_thumb
+from TEAMZYRO import Carbon, YouTube, app
+from TEAMZYRO.core.call import ZYRO
+from TEAMZYRO.misc import db
+from TEAMZYRO.utils.database import add_active_video_chat, is_active_chat
+from TEAMZYRO.utils.exceptions import AssistantErr
+from TEAMZYRO.utils.inline import aq_markup, close_markup, stream_markup
+from TEAMZYRO.utils.pastebin import ZYROBin
+from TEAMZYRO.utils.stream.queue import put_queue, put_queue_index
+from TEAMZYRO.utils.thumbnails import get_thumb
 
 
 async def stream(
@@ -32,7 +32,7 @@ async def stream(
     if not result:
         return
     if forceplay:
-        await DAXX.force_stop_stream(chat_id)
+        await ZYRO.force_stop_stream(chat_id)
     if streamtype == "playlist":
         msg = f"{_['play_19']}\n\n"
         count = 0
@@ -79,7 +79,7 @@ async def stream(
                     )
                 except:
                     raise AssistantErr(_["play_14"])
-                await DAXX.join_call(
+                await ZYRO.join_call(
                     chat_id,
                     original_chat_id,
                     file_path,
@@ -116,7 +116,7 @@ async def stream(
         if count == 0:
             return
         else:
-            link = await DAXXBin(msg)
+            link = await ZYROBin(msg)
             lines = msg.count("\n")
             if lines >= 17:
                 car = os.linesep.join(msg.split(os.linesep)[:17])
@@ -165,7 +165,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await DAXX.join_call(
+            await ZYRO.join_call(
                 chat_id,
                 original_chat_id,
                 file_path,
@@ -225,7 +225,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await DAXX.join_call(chat_id, original_chat_id, file_path, video=None)
+            await ZYRO.join_call(chat_id, original_chat_id, file_path, video=None)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -277,7 +277,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await DAXX.join_call(chat_id, original_chat_id, file_path, video=status)
+            await ZYRO.join_call(chat_id, original_chat_id, file_path, video=status)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -333,7 +333,7 @@ async def stream(
             n, file_path = await YouTube.video(link)
             if n == 0:
                 raise AssistantErr(_["str_3"])
-            await DAXX.join_call(
+            await ZYRO.join_call(
                 chat_id,
                 original_chat_id,
                 file_path,
@@ -391,7 +391,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await DAXX.join_call(
+            await ZYRO.join_call(
                 chat_id,
                 original_chat_id,
                 link,

@@ -1,10 +1,10 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from DAXXMUSIC import app
-from DAXXMUSIC.utils.database import get_loop, set_loop
-from DAXXMUSIC.utils.decorators import AdminRightsCheck
-from DAXXMUSIC.utils.inline import close_markup
+from TEAMZYRO import app
+from TEAMZYRO.utils.database import get_loop, set_loop
+from TEAMZYRO.utils.decorators import AdminRightsCheck
+from TEAMZYRO.utils.inline import close_markup
 from config import BANNED_USERS
 
 

@@ -2,13 +2,13 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from pymongo import MongoClient
 import re
-from DAXXMUSIC import app as DAXX
+from TEAMZYRO import app as ZYRO
 
 
 mongo_url_pattern = re.compile(r'mongodb(?:\+srv)?:\/\/[^\s]+')
 
 
-@DAXX.on_message(filters.command("mongochk"))
+@ZYRO.on_message(filters.command("mongochk"))
 async def mongo_command(client, message: Message):
     if len(message.command) < 2:
         await message.reply("Please enter your MongoDB URL after the command. Example: /mongochk your_mongodb_url")

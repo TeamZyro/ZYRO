@@ -4,9 +4,9 @@ from datetime import datetime
 from pyrogram.enums import ChatType
 
 import config
-from DAXXMUSIC import app
-from DAXXMUSIC.core.call import DAXX, autoend
-from DAXXMUSIC.utils.database import get_client, is_active_chat, is_autoend
+from TEAMZYRO import app
+from TEAMZYRO.core.call import ZYRO, autoend
+from TEAMZYRO.utils.database import get_client, is_active_chat, is_autoend
 
 
 async def auto_leave():
@@ -14,7 +14,7 @@ async def auto_leave():
         while not await asyncio.sleep(
             config.AUTO_LEAVE_ASSISTANT_TIME
         ):
-            from DAXXMUSIC.core.userbot import assistants
+            from TEAMZYRO.core.userbot import assistants
 
             for num in assistants:
                 client = await get_client(num)
@@ -64,7 +64,7 @@ async def auto_end():
                     continue
                 autoend[chat_id] = {}
                 try:
-                    await DAXX.stop_stream(chat_id)
+                    await ZYRO.stop_stream(chat_id)
                 except:
                     continue
                 try:

@@ -1,8 +1,8 @@
-from DAXXMUSIC.core.userbot import assistants
-from DAXXMUSIC import userbot as us, app
+from TEAMZYRO.core.userbot import assistants
+from TEAMZYRO import userbot as us, app
 from pyrogram import filters
 from pyrogram.types import Message
-from DAXXMUSIC.misc import SUDOERS
+from TEAMZYRO.misc import SUDOERS
 from config import BANNED_USERS, OWNER_ID
 
 
