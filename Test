@@ -1,4 +1,5 @@
-git mv daxxmusic zyromusic
+git mv DAXXMUSIC TEAMZYRO
 
 
-grep -rl 'daxxmusic' . | xargs sed -i 's/daxxmusic/zyromusic/g'
+grep -rl 'DAXXMUISC' . | xargs sed -i 's/DAXXMUSIC/TEAMZYRO/g'
+grep -rl 'DAXX' . | xargs sed -i 's/DAXX/ZYRO/g'
