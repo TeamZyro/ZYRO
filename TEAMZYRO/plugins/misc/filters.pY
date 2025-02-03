@@ -1,7 +1,7 @@
 import re
 from TEAMZYRO import app
 from config import BOT_USERNAME
-from TEAMZYRO.utils.daxx_ban import admin_filter
+from TEAMZYRO.utils.ZYRO_ban import admin_filter
 from TEAMZYRO.mongo.filtersdb import *
 from TEAMZYRO.utils.filters_func import GetFIlterMessage, get_text_reason, SendFilterMessage
 from TEAMZYRO.utils.yumidb import user_admin
