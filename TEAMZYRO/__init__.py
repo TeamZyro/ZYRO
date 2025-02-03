@@ -6,6 +6,7 @@ from TEAMZYRO.misc import dbb, heroku
 from pyrogram import Client
 from SafoneAPI import SafoneAPI
 from .logging import LOGGER
+from TEAMZYRO.core.application import application
 
 dirr()
 git()
@@ -15,6 +16,7 @@ heroku()
 app = ZYRO()
 api = SafoneAPI()
 userbot = Userbot()
+application = application
 
 from .platforms import *
 
