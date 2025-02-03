@@ -1,7 +1,7 @@
 from TEAMZYRO import app
 from config import BOT_USERNAME
 from pyrogram import filters
-from TEAMZYRO.utils.daxx_ban import admin_filter
+from TEAMZYRO.utils.ZYRO_ban import admin_filter
 from TEAMZYRO.mongo.notesdb import *
 from TEAMZYRO.utils.notes_func import GetNoteMessage, exceNoteMessageSender, privateNote_and_admin_checker
 from TEAMZYRO.utils.yumidb import user_admin
