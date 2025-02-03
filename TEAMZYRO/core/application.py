@@ -3,4 +3,4 @@ import config
 
 TOKEN = config.BOT_TOKEN
 
-application = Application.builder().token(TOKEN).build()￼Enter
+application = Application.builder().token(TOKEN).build()
