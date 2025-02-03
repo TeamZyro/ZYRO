@@ -1,7 +1,7 @@
 from pyrogram import  filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from TEAMZYRO.utils.daxx_font import Fonts
+from TEAMZYRO.utils.ZYRO_font import Fonts
 from TEAMZYRO import app
 
 @app.on_message(filters.command(["font", "fonts"]))
