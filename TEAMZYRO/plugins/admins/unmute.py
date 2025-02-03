@@ -1,7 +1,7 @@
 from TEAMZYRO import app
 from pyrogram import filters,enums
 from pyrogram.types import ChatPermissions 
-from TEAMZYRO.utils.daxx_ban import admin_filter
+from TEAMZYRO.utils.ZYRO_ban import admin_filter
 
 @app.on_message(filters.command("unmuteall") & admin_filter)
 async def unmute_all(_,msg):
