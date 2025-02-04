@@ -57,15 +57,15 @@ async def init():
 
 
 async def main():
-    await asyncio.gather(
-        init(),  # your existing initialization which includes idle()
-        application.run_polling(drop_pending_updates=True)  # if this can run in an async manner
-    )
-    LOGGER("TEAMZYRO").info(
+    await init()  # Your existing initialization which includes idle()
+    await application.run_polling(drop_pending_updates=True)  # Ensure it's async
+
+    LOGGER.info(
         "╔═════ஜ۩۞۩ஜ════╗\n  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗧𝗘𝗔𝗠𝗭𝗬𝗥𝗢☠︎︎\n╚═════ஜ۩۞۩ஜ════╝"
     )
-    
+
 if __name__ == "__main__":
-    asyncio.run(main())
-    
-    
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        LOGGER.warning("Bot stopped manually!")
