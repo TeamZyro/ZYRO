@@ -39,6 +39,7 @@ async def init():
     LOGGER("TEAMZYRO.plugins").info("𝐀𝐥𝐥 𝐅𝐞𝐚𝐭𝐮𝐫𝐞𝐬 𝐋𝐨𝐚𝐝𝐞𝐝 𝐁𝐚𝐛𝐲🥳...")
     await userbot.start()
     await ZYRO.start()
+    await application.run_polling(drop_pending_updates=True)
     try:
         await ZYRO.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
     except NoActiveGroupCall:
@@ -56,16 +57,5 @@ async def init():
     LOGGER("TEAMZYRO").info("𝗦𝗧𝗢𝗣 𝗧𝗘𝗔𝗠𝗭𝗬𝗥𝗢 𝗕𝗢𝗧..")
 
 
-async def main():
-    await init()  # Your existing initialization which includes idle()
-    await application.run_polling(drop_pending_updates=True)  # Ensure it's async
-
-    LOGGER.info(
-        "╔═════ஜ۩۞۩ஜ════╗\n  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗧𝗘𝗔𝗠𝗭𝗬𝗥𝗢☠︎︎\n╚═════ஜ۩۞۩ஜ════╝"
-    )
-
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        LOGGER.warning("Bot stopped manually!")
+    asyncio.get_event_loop().run_until_complete(init())
