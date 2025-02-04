@@ -56,10 +56,16 @@ async def init():
     LOGGER("TEAMZYRO").info("𝗦𝗧𝗢𝗣 𝗧𝗘𝗔𝗠𝗭𝗬𝗥𝗢 𝗕𝗢𝗧..")
 
 
-if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(init())
-    application.run_polling(drop_pending_updates=True)
+async def main():
+    await asyncio.gather(
+        init(),  # your existing initialization which includes idle()
+        application.run_polling(drop_pending_updates=True)  # if this can run in an async manner
+    )
     LOGGER("TEAMZYRO").info(
         "╔═════ஜ۩۞۩ஜ════╗\n  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗧𝗘𝗔𝗠𝗭𝗬𝗥𝗢☠︎︎\n╚═════ஜ۩۞۩ஜ════╝"
     )
+    
+if __name__ == "__main__":
+    asyncio.run(main())
+    
+    
