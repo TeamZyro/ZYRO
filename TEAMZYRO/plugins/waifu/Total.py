@@ -3,8 +3,8 @@ from pymongo import ReturnDocument
 import os
 from telegram import Update
 from telegram.ext import CommandHandler, CallbackContext
-
-from TEAMZYRO import application, collection, user_collection
+from TEAMZYRO import application
+from TEAMZYRO.database import collection, user_collection
 from gridfs import GridFS 
 from io import BytesIO
 
