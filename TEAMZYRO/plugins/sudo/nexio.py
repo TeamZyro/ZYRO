@@ -4,7 +4,7 @@ from TEAMZYRO import app, userbot
 from TEAMZYRO.misc import SUDOERS
 from pyrogram import * 
 from pyrogram.types import *
-from TEAMZYRO.utils.daxx_ban import admin_filter
+from TEAMZYRO.utils.ZYRO_ban import admin_filter
 
 
 
