@@ -30,7 +30,7 @@
 
 ---
 
-![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TeamZyro&repo=Nguess&theme=flag-india)
+![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=TeamZyro&repo=Zyro&theme=flag-india)
 
 ---
 
