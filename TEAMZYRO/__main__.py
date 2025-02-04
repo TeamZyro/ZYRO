@@ -56,6 +56,5 @@ async def init():
     await userbot.stop()
     LOGGER("TEAMZYRO").info("𝗦𝗧𝗢𝗣 𝗧𝗘𝗔𝗠𝗭𝗬𝗥𝗢 𝗕𝗢𝗧..")
 
-
 if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(init())
+    asyncio.run(init())  # Ensures a new event loop
