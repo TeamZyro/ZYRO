@@ -4,7 +4,7 @@ from pyrogram import filters, Client
 from TEAMZYRO import app
 from config import OWNER_ID
 from pyrogram.types import Message
-from TEAMZYRO.utils.daxx_ban import admin_filter
+from TEAMZYRO.utils.ZYRO_ban import admin_filter
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 
 
