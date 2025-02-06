@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from TEAMZYRO import app as bot
 
-CHANNEL_ID = "-1002296644411"
+CHANNEL_ID = "@update_cookie"
 
 # Bot client setup
 
