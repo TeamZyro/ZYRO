@@ -13,6 +13,12 @@ from pyrogram import Client, filters
 
 from TEAMZYRO import app as bot
 
+MONGO_URI = "mongodb+srv://test12:test12@cluster0.z1pajuv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+client = MongoClient(MONGO_URI)
+db = client["cookie_db"]
+collection = db["cookies"]
+
+
 def get_current_cookie():
     cookie_dir = "cookies"
     if not os.path.exists(cookie_dir):
