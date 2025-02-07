@@ -19,6 +19,12 @@ db = client["cookie_db"]
 collection = db["cookies"]
 
 
+# 🔹 Function to extract version from filename
+def extract_version(filename):
+    match = re.search(r"V(\d+)", filename)
+    return int(match.group(1)) if match else 0
+
+# 🔹 Function to get current cookie file
 def get_current_cookie():
     cookie_dir = "cookies"
     if not os.path.exists(cookie_dir):
@@ -29,11 +35,6 @@ def get_current_cookie():
         return None
 
     return os.path.join(cookie_dir, max(cookies_files, key=extract_version))
-
-# 🔹 Function to extract version from filename
-def extract_version(filename):
-    match = re.search(r"V(\d+)", filename)
-    return int(match.group(1)) if match else 0
 
 # 🔹 Upload function to Catbox
 def upload_to_catbox(file_path):
@@ -49,21 +50,24 @@ def upload_to_catbox(file_path):
     else:
         return False, f"Error: {response.status_code} - {response.text}"
 
-# 🔹 /upload Command
-@bot.on_message(filters.command("upload_cookie"))
+# 🔹 /upload Command (With Reply File Support)
+@bot.on_message(filters.command("upload") & filters.private)
 async def upload_cookie(client, message):
     if len(message.command) < 2:
         await message.reply("❌ Please specify a version. Example: `/upload V1`")
         return
 
     version = message.command[1]
-    cookie_file = f"cookies/{version}.txt"
 
-    if not os.path.exists(cookie_file):
-        await message.reply(f"❌ Cookie file `{version}.txt` not found!")
+    # Check if user replied with a file
+    if message.reply_to_message and message.reply_to_message.document:
+        file_name = f"cookies/{version}.txt"
+        await message.reply_to_message.download(file_name)
+    else:
+        await message.reply("❌ Please reply to a TXT file with `/upload V1` format.")
         return
 
-    success, result = upload_to_catbox(cookie_file)
+    success, result = upload_to_catbox(file_name)
 
     if success:
         collection.update_one({"version": version}, {"$set": {"url": result}}, upsert=True)
@@ -71,8 +75,8 @@ async def upload_cookie(client, message):
     else:
         await message.reply(f"❌ Upload failed: {result}")
 
-# 🔹 /updatecookie Command
-@bot.on_message(filters.command("update_cookie"))
+# 🔹 /updatecookie Command (Auto-Delete Old File)
+@bot.on_message(filters.command("updatecookie") & filters.private)
 async def update_cookie(client, message):
     current_cookie = get_current_cookie()
 
@@ -90,13 +94,16 @@ async def update_cookie(client, message):
         latest_url = latest_cookie["url"]
 
         if latest_version > current_version:
+            # Delete old cookie
+            os.remove(current_cookie)
+
             # Download new cookie file
             new_cookie_file = f"cookies/V{latest_version}.txt"
             response = requests.get(latest_url)
             with open(new_cookie_file, "wb") as f:
                 f.write(response.content)
 
-            await message.reply(f"✅ Cookie updated to V{latest_version}!")
+            await message.reply(f"✅ Cookie updated to V{latest_version}!\n🔹 Old version deleted!")
             return
 
         await message.reply(f"🔹 Current Cookie: V{current_version}\n🔹 Latest: V{latest_version}\n❌ No update required!")
