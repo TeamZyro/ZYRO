@@ -1,8 +1,3 @@
-import os
-import random
-import re
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 import os
 import random
@@ -12,11 +7,6 @@ from pymongo import MongoClient
 from pyrogram import Client, filters
 
 from TEAMZYRO import app as bot
-
-MONGO_URI = "mongodb+srv://test12:test12@cluster0.z1pajuv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-client = MongoClient(MONGO_URI)
-db = client["cookie_db"]
-collection = db["cookies"]
 
 
 # 🔹 Function to extract version from filename
@@ -37,20 +27,6 @@ def get_current_cookie():
     return os.path.join(cookie_dir, max(cookies_files, key=extract_version))
 
 # 🔹 Upload function to Catbox
-def upload_to_catbox(file_path):
-    url = "https://catbox.moe/user/api.php"
-    files = {'fileToUpload': open(file_path, 'rb')}
-    data = {"reqtype": "fileupload"}
-
-    response = requests.post(url, files=files, data=data)
-    files['fileToUpload'].close()
-
-    if response.status_code == 200:
-        return True, response.text.strip()
-    else:
-        return False, f"Error: {response.status_code} - {response.text}"
-
-# 🔹 /upload Command (With Reply File Support)
 @bot.on_message(filters.command("upload") & filters.private)
 async def upload_cookie(client, message):
     if len(message.command) < 2:
@@ -67,47 +43,8 @@ async def upload_cookie(client, message):
         await message.reply("❌ Please reply to a TXT file with `/upload V1` format.")
         return
 
-    success, result = upload_to_catbox(file_name)
+    # Here we no longer call upload_to_catbox, just store the file name
+    # You can adjust the logic to simply store the file locally or handle it differently
+    collection.update_one({"version": version}, {"$set": {"file_name": file_name}}, upsert=True)
 
-    if success:
-        collection.update_one({"version": version}, {"$set": {"url": result}}, upsert=True)
-        await message.reply(f"✅ Cookie uploaded successfully!\n🔹 Version: `{version}`\n🔹 URL: {result}")
-    else:
-        await message.reply(f"❌ Upload failed: {result}")
-
-# 🔹 /updatecookie Command (Auto-Delete Old File)
-@bot.on_message(filters.command("updatecookie") & filters.private)
-async def update_cookie(client, message):
-    current_cookie = get_current_cookie()
-
-    if not current_cookie:
-        await message.reply("⚠️ No cookie files found!")
-        return
-
-    current_version = extract_version(os.path.basename(current_cookie))
-
-    # Fetch latest version from MongoDB
-    latest_cookie = collection.find_one({}, sort=[("version", -1)])
-
-    if latest_cookie:
-        latest_version = int(latest_cookie["version"][1:])
-        latest_url = latest_cookie["url"]
-
-        if latest_version > current_version:
-            # Delete old cookie
-            os.remove(current_cookie)
-
-            # Download new cookie file
-            new_cookie_file = f"cookies/V{latest_version}.txt"
-            response = requests.get(latest_url)
-            with open(new_cookie_file, "wb") as f:
-                f.write(response.content)
-
-            await message.reply(f"✅ Cookie updated to V{latest_version}!\n🔹 Old version deleted!")
-            return
-
-        await message.reply(f"🔹 Current Cookie: V{current_version}\n🔹 Latest: V{latest_version}\n❌ No update required!")
-        return
-
-    await message.reply("⚠️ No valid version found in database!")
-
+    await message.reply(f"✅ Cookie uploaded successfully!\n🔹 Version: `{version}`\n🔹 File saved: {file_name}")
