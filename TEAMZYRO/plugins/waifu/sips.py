@@ -6,7 +6,7 @@ from pyrogram.enums import ParseMode
 import math
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
-from TEAMZYEO import application, collection, db, app, user_collection
+from TEAMZYRO import application, collection, db, app, user_collection
 
 
 from pyrogram import enums
