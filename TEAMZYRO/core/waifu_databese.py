@@ -1,4 +1,3 @@
-import config 
 from motor.motor_asyncio import AsyncIOMotorClient
 
 MONGO_DB_URI = "mongodb+srv://bikash:bikash@bikash.3jkvhp7.mongodb.net/?retryWrites=true&w=majority"
