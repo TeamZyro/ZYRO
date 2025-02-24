@@ -1,7 +1,9 @@
 import config 
 from motor.motor_asyncio import AsyncIOMotorClient
 
-zyro = AsyncIOMotorClient(config.MONGO_DB_URI)
+MONGO_DB_URI = "mongodb+srv://bikash:bikash@bikash.3jkvhp7.mongodb.net/?retryWrites=true&w=majority"
+
+zyro = AsyncIOMotorClient(MONGO_DB_URI)
 db = zyro['waifu_collector_bot']
 collection = db['anime_characters_lol']
 user_totals_collection = db['user_totals_lmaoooo']
