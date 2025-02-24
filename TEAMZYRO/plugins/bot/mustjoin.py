@@ -4,10 +4,10 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 from TEAMZYRO import app
 
-#--------------------------
-
+#------------------------
 MUST_JOIN = "CARD3DBOTx"
 #------------------------
+
 # @app.on_message(filters.incoming & filters.private, group=-1)
 async def must_join_channel(app: Client, msg: Message):
     if not MUST_JOIN:
