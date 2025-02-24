@@ -45,9 +45,9 @@ user_nguess_progress = {}
 user_guess_progress = {}
 
 # -------------------------- POWER SETUP --------------------------------
-from TEAMZYRO.waifu.unit.zyro_ban import *
-from TEAMZYRO.waifu.unit.zyro_sudo import *
-from TEAMZYRO.waifu.unit.zyro_react import *
-from TEAMZYRO.waifu.unit.zyro_send_img import *
-from TEAMZYRO.waifu.unit.zyro_guess import *
-from TEAMZYRO.waifu.unit.zyro_rarity import *
+from TEAMZYRO.plugins.waifu.unit.zyro_ban import *
+from TEAMZYRO.plugins.waifu.unit.zyro_sudo import *
+from TEAMZYRO.plugins.waifu.unit.zyro_react import *
+from TEAMZYRO.plugins.waifu.unit.zyro_send_img import *
+from TEAMZYRO.plugins.waifu.unit.zyro_guess import *
+from TEAMZYRO.plugins.waifu.unit.zyro_rarity import *
