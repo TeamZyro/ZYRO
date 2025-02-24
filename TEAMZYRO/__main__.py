@@ -45,12 +45,12 @@ async def init():
     await ZYRO.start()
 
     # Start Telegram bot using python-telegram-bot
-    async def run_application():
-        await application.initialize()
-        await application.start()
-        await application.updater.start_polling()
+    # async def run_application():
+    #     await application.initialize()
+    #     await application.start()
+    #     await application.updater.start_polling()
     
-    asyncio.create_task(run_application())
+    # asyncio.create_task(run_application())
 
     try:
         await ZYRO.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
