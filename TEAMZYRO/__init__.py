@@ -30,3 +30,25 @@ Resso = RessoAPI()
 Telegram = TeleAPI()
 YouTube = YouTubeAPI()
 
+#--------------------------- STRIN ---------------------------------------
+
+locks = {}
+message_counters = {}
+spam_counters = {}
+last_characters = {}
+sent_characters = {}
+first_correct_guesses = {}
+message_counts = {}
+last_user = {}
+warned_users = {}
+user_cooldowns = {}
+user_nguess_progress = {}
+user_guess_progress = {}
+
+# -------------------------- POWER SETUP --------------------------------
+from TEAMZYRO.waifu.unit.zyro_ban import *
+from TEAMZYRO.waifu.unit.zyro_sudo import *
+from TEAMZYRO.waifu.unit.zyro_react import *
+from TEAMZYRO.waifu.unit.zyro_send_img import *
+from TEAMZYRO.waifu.unit.zyro_guess import *
+from TEAMZYRO.waifu.unit.zyro_rarity import *
