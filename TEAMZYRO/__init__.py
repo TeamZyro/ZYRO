@@ -1,7 +1,6 @@
 from TEAMZYRO.core.bot import ZYRO
 from TEAMZYRO.core.dir import dirr
 from TEAMZYRO.core.git import git
-from TEAMZYRO.core.rarity import *
 from TEAMZYRO.core.waifu_databese import *
 from TEAMZYRO.core.userbot import Userbot
 from TEAMZYRO.misc import dbb, heroku
