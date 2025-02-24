@@ -1,4 +1,4 @@
-from TEAMZYRO import *
+from TEAMZYRO import app
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import requests
