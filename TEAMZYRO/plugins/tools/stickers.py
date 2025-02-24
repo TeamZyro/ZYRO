@@ -8,7 +8,7 @@ import cloudscraper
 scraper = cloudscraper.create_scraper()
 MAX_LENGTH = 4000  # Safe limit under 4096
 
-@app.on_message(filters.command(["sticker", "stickers"]))
+@app.on_message(filters.command("sticker"))
 def find_sticker(_, message):
     if len(message.command) < 2:
         message.reply_text("❌ **Usage:** /findsticker <sticker name>")
