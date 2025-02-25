@@ -29,7 +29,6 @@ async def rank(client, message):
         ],
         [
             InlineKeyboardButton("MTOP", callback_data="mtop"),
-            InlineKeyboardButton("Stars", callback_data="golden_stars"),
         ],
     ]
 
@@ -48,7 +47,6 @@ async def update_caption(callback_query, caption, active_button):
         ],
         [
             InlineKeyboardButton("✅ MTOP" if active_button == "mtop" else "MTOP", callback_data="mtop"),
-            InlineKeyboardButton("✅ Stars" if active_button == "golden_stars" else "Golden Stars", callback_data="golden_stars"),
         ],
     ]
 
@@ -107,16 +105,3 @@ async def mtop_callback(client, callback_query):
 
     await update_caption(callback_query, caption, "mtop")
 
-@Client.on_callback_query(filters.regex("^golden_stars$"))
-async def golden_stars_callback(client, callback_query):
-    await asyncio.sleep(1)
-    top_users = await user_collection.find().sort("golden_stars", -1).limit(10).to_list(length=10)
-
-    caption = "<b>GOLDEN STARS LEADERBOARD</b>\n\n🏆 Tᴏᴘ 10 Uꜱᴇʀs ʙʏ Gᴏʟᴅᴇɴ Sᴛᴀʀs:\n\n"
-    for rank, user in enumerate(top_users, start=1):
-        user_id = user.get("id", "Unknown")
-        first_name = user.get("first_name", "Unknown")
-        golden_stars = user.get("golden_stars", 0)
-        caption += f"{rank}. <a href='tg://user?id={user_id}'><b>{first_name}</b></a>: ⭐ {golden_stars} Golden Stars\n"
-
-    await update_caption(callback_query, caption, "golden_stars")

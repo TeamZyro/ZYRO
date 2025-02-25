@@ -2,7 +2,6 @@ import re
 from cachetools import TTLCache
 from TEAMZYRO import user_collection, collection
 
-# Caching to reduce database queries
 all_characters_cache = TTLCache(maxsize=10000, ttl=36000)
 user_collection_cache = TTLCache(maxsize=10000, ttl=60)
 

@@ -20,7 +20,6 @@ RARITY_WEIGHTS = {
     "🪽 AMV": 0.5,
 }
 
-
 async def delete_message(chat_id, message_id, context):
     await asyncio.sleep(300)  # 5 minutes (300 seconds)
     try:

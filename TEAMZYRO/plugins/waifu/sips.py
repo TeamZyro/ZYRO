@@ -8,7 +8,6 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 
 from TEAMZYRO import application, collection, db, app, user_collection
 
-
 from pyrogram import enums
 
 rarity_map = {
