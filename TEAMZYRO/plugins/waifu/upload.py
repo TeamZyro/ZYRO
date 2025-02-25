@@ -1,10 +1,11 @@
-from TEAMZYRO import *
+
 import os
 import requests
 from pyrogram import Client, filters
 from pymongo import ReturnDocument
 from gridfs import GridFS
 import config
+from TEAMZYRO import collection, user_collection, rarity_map, app as ZYRO, require_power
 
 CHARA_CHANNEL_ID = config.CHARA_CHANNEL_ID
 
