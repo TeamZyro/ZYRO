@@ -53,7 +53,7 @@ async def message_counter(update: Update, context: CallbackContext) -> None:
             message_counts[chat_id] = 1
 
         # Fixed threshold for triggering at 80 messages
-        if message_counts[chat_id] % 80 == 0:
+        if message_counts[chat_id] % 100 == 0:
             await send_image(update, context)
             message_counts[chat_id] = 0
 
