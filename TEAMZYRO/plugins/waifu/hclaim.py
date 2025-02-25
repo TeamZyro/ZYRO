@@ -2,7 +2,7 @@ import asyncio
 from pyrogram import Client, filters, types as t
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from datetime import datetime, timedelta
-from TEAMZYRO import ZYRO as bot
+from TEAMZYRO import app as bot
 from TEAMZYRO import user_collection, collection, user_nguess_progress, user_guess_progress
 
 chat = "-1002289810575"
