@@ -3,6 +3,9 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQ
 from pymongo import MongoClient
 from TEAMZYRO import *
 from functools import wraps
+import config
+
+OWNER_ID = config.OWNER_ID
 
 sudo_users = db['sudo_users']
 
