@@ -31,6 +31,22 @@ from TEAMZYRO.utils.inline.song import song_markup
 SONG_COMMAND = ["song"]
 
 
+def get_cookie_file():
+    """Fetches a random cookies.txt file from the 'cookies' directory"""
+    cookie_dir = "cookies"
+    
+    if not os.path.exists(cookie_dir):
+        os.makedirs(cookie_dir)  # Ensure the directory exists
+        return None  # Return None if no cookies are available
+    
+    cookies_files = [f for f in os.listdir(cookie_dir) if f.endswith(".txt")]
+    
+    if not cookies_files:
+        return None  # No cookies found
+    
+    return os.path.join(cookie_dir, random.choice(cookies_files))
+
+
 @app.on_message(
     filters.command(SONG_COMMAND)
     & filters.group
@@ -227,9 +243,8 @@ async def song_helper_cb(client, CallbackQuery, _):
 # Downloading Songs Here
 
 
-@app.on_callback_query(
-    filters.regex(pattern=r"song_download") & ~BANNED_USERS
-)
+
+@app.on_callback_query(filters.regex(pattern=r"song_download") & ~BANNED_USERS)
 @languageCB
 async def song_download_cb(client, CallbackQuery, _):
     try:
@@ -241,12 +256,21 @@ async def song_download_cb(client, CallbackQuery, _):
     stype, format_id, vidid = callback_request.split("|")
     mystic = await CallbackQuery.edit_message_text(_["song_8"])
     yturl = f"https://www.youtube.com/watch?v={vidid}"
-    with yt_dlp.YoutubeDL({"quiet": True}) as ytdl:
+    
+    # Get cookies file
+    cookie_file = get_cookie_file()
+    ytdl_opts = {"quiet": True}
+    if cookie_file:
+        ytdl_opts["cookiefile"] = cookie_file
+    
+    with yt_dlp.YoutubeDL(ytdl_opts) as ytdl:
         x = ytdl.extract_info(yturl, download=False)
+    
     title = (x["title"]).title()
     title = re.sub("\W+", " ", title)
     thumb_image_path = await CallbackQuery.message.download()
     duration = x["duration"]
+    
     if stype == "video":
         thumb_image_path = await CallbackQuery.message.download()
         width = CallbackQuery.message.photo.width
