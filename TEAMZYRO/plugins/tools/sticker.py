@@ -10,27 +10,7 @@ from uuid import uuid4
 from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup
 
 
-######### sticker id
-
-@app.on_message(filters.command("st"))
-def generate_sticker(client, message):
-    if len(message.command) == 2:
-        sticker_id = message.command[1]
-        try:
-            client.send_sticker(message.chat.id, sticker=sticker_id)
-        except Exception as e:
-            message.reply_text(f"Error: {e}")
-    else:
-        message.reply_text("Please provide a sticker ID after /st command.")
-
-
-#---------
-
-
-
-
-
-@app.on_message(filters.command("packkang"))
+@app.on_message(filters.command("kang"))
 async def _packkang(app :app,message):  
     txt = await message.reply_text("**ᴘʀᴏᴄᴇssɪɴɢ....**")
     if not message.reply_to_message:
