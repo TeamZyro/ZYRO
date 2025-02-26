@@ -2,7 +2,7 @@ from pprint import pprint
 from typing import Any
 from typing import Dict, List, Union
 from pymongo import MongoClient
-from telegram import User as user, chat
+from telegram import User as user, Chat as chat
 from config import MONGO_DB_URI
 import itertools
 
