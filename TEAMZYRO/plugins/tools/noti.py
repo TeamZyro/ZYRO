@@ -1,24 +1,24 @@
 from pyrogram import Client, filters
-from pyrogram.types import Message
+from pyrogram.types import ChatMemberUpdated
 from TEAMZYRO import app
 
-# Track promote and demote actions
-@app.on_message(filters.group & (filters.promote_member | filters.demote_member))
-async def track_promote_demote(client: Client, message: Message):
-    # Get the user who performed the action (admin)
-    admin = message.from_user
+@app.on_chat_member_updated(filters.group)
+async def track_promote_demote(client: Client, chat_member: ChatMemberUpdated):
+    old = chat_member.old_chat_member
+    new = chat_member.new_chat_member
 
-    # Get the user who was promoted/demoted
-    if message.new_chat_members:
-        user = message.new_chat_members[0]
-    elif message.left_chat_member:
-        user = message.left_chat_member
-    else:
-        user = None
+    admin = chat_member.from_user  # The admin who performed the action
+    user = new.user  # The user who was promoted or demoted
 
-    if user:
-        action = "promoted" if filters.promote_member else "demoted"
-        await message.reply_text(
+    if old.status != new.status:  # Check if the status changed
+        if new.status in ["administrator", "owner"] and old.status not in ["administrator", "owner"]:
+            action = "promoted"
+        elif new.status not in ["administrator", "owner"] and old.status in ["administrator", "owner"]:
+            action = "demoted"
+        else:
+            return  # No promotion or demotion happened
+
+        await client.send_message(
+            chat_member.chat.id,
             f"@{admin.username} has {action} @{user.username}."
         )
-
