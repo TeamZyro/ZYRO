@@ -1,54 +1,37 @@
 from TEAMZYRO import app
-from pyrogram.errors import RPCError
-from pyrogram.types import ChatMemberUpdated, InlineKeyboardMarkup, InlineKeyboardButton
-from os import environ
-from typing import Union, Optional
-from PIL import Image, ImageDraw, ImageFont
-from os import environ
-import random
-from pyrogram import Client, filters
-from pyrogram.types import ChatJoinRequest, InlineKeyboardButton, InlineKeyboardMarkup
-from PIL import Image, ImageDraw, ImageFont
-import asyncio, os, time, aiohttp
-from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont, ImageEnhance
-from asyncio import sleep
-from pyrogram import filters, Client, enums
-from pyrogram.enums import ParseMode
-from logging import getLogger
-from TEAMZYRO.utils.ZYRO_ban import admin_filter
-from PIL import ImageDraw, Image, ImageFont, ImageChops
-from pyrogram import *
-from pyrogram.types import *
-from logging import getLogger
-from pyrogram import Client, filters
-import requests
-import random
-import os
-import re
-import asyncio
-import time
-from TEAMZYRO.utils.database import add_served_chat
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from TEAMZYRO.utils.database import get_assistant
-import asyncio
-from TEAMZYRO.misc import SUDOERS
-from TEAMZYRO.mongo.afkdb import PROCESS
-from pyrogram import Client, filters
-from pyrogram.errors import UserAlreadyParticipant
-from TEAMZYRO import app
-import asyncio
-import random
-from pyrogram import Client, filters
-from pyrogram.enums import ChatMemberStatus
+from pyrogram import Client, filters, enums
 from pyrogram.errors import (
+    RPCError,
+    UserAlreadyParticipant,
     ChatAdminRequired,
     InviteRequestSent,
-    UserAlreadyParticipant,
     UserNotParticipant,
 )
-from TEAMZYRO.utils.database import get_assistant, is_active_chat
-
+from pyrogram.types import (
+    ChatMemberUpdated,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    ChatJoinRequest,
+    Message,
+)
+from TEAMZYRO.utils.ZYRO_ban import admin_filter
+from TEAMZYRO.utils.database import (
+    add_served_chat,
+    get_assistant,
+    is_active_chat,
+)
+from TEAMZYRO.misc import SUDOERS
+from TEAMZYRO.mongo.afkdb import PROCESS
+from os import environ
+import random
+import asyncio
+import time
+import aiohttp
+import requests
+import re
+from pathlib import Path
+from logging import getLogger
+from PIL import Image, ImageDraw, ImageFont, ImageEnhance, ImageChops
 
 
 random_photo = [
