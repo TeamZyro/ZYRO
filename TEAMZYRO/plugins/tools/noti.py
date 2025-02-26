@@ -1,35 +1,31 @@
-from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
+from pyrogram import Client, filters
+from pyrogram.types import ChatPrivileges
+from TEAMZYRO import app
 
-# Replace these with your own values
-from TEAMZYRO import application
+@app.on_chat_member_updated()
+async def admin_change_handler(client, message):
+    old_status = message.old_chat_member
+    new_status = message.new_chat_member
+    chat_id = message.chat.id
 
-# Function to handle promote, demote, ban, and unban actions
-async def track_actions(update: Update, context: CallbackContext):
-    message = update.message
+    if old_status.status != new_status.status:  # Detect status changes
+        admin_user = message.from_user  # The admin making the change
+        target_user = new_status.user  # The affected user
 
-    # Get the user who performed the action (admin)
-    admin = message.from_user
+        # 🔹 Admin Promotion / Demotion
+        if old_status.privileges != new_status.privileges:
+            if isinstance(new_status.privileges, ChatPrivileges):  # Promoted
+                text = f"🆙 {admin_user.mention} promoted {target_user.mention} to **Admin**! ✅"
+            else:  # Demoted
+                text = f"⏬ {admin_user.mention} demoted {target_user.mention} from **Admin**! ❌"
+            await client.send_message(chat_id, text)
 
-    # Get the user who was affected (promoted/demoted/banned/unbanned)
-    user = None
-    if message.new_chat_members:
-        user = message.new_chat_members[0]
-        action = "promoted"
-    elif message.left_chat_member:
-        user = message.left_chat_member
-        action = "banned or removed"
-    else:
-        return
+        # 🔹 User Ban / Unban
+        elif old_status.status == "member" and new_status.status == "kicked":
+            text = f"🚫 {admin_user.mention} **banned** {target_user.mention}! ❌"
+            await client.send_message(chat_id, text)
 
-    if user:
-        await message.reply_text(
-            f"@{admin.username} has {action} @{user.username}."
-        )
+        elif old_status.status == "kicked" and new_status.status == "member":
+            text = f"✅ {admin_user.mention} **unbanned** {target_user.mention}!"
+            await client.send_message(chat_id, text)
 
-
-    # Adding a message handler to track actions
-
-application.add_handler(MessageHandler(filters.ChatType.GROUPS, track_actions))
-
-  
