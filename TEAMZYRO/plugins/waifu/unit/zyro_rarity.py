@@ -59,3 +59,22 @@ RARITY_R = [
     ("🔞 Erotic", 20000),
     ("🪽 AMV", 50000),
 ]
+
+RARITY_R = [
+    ("⚪️ Common", 800),
+    ("🟣 Rare", 6000),
+    ("🟡 Legendary", 4000),
+    ("🟢 Medium", 1000),
+    ("💮 Special Edition", 9000),
+    ("🔮 Limited Edition", 10000),
+    ("🎐 Celestial", 40000),
+    ("💖 Valentine", 20000),
+    ("🎃 Halloween", 25000),
+    ("❄️ Winter", 12000),
+    ("💸 Expensive", 19000),
+    ("💌 AMV", 50000),
+    ("🏖 Summer", 23000),
+    ("🧬 X-Verse", 36500),
+    ("✨ Neon", 20000),
+    ("⚜ Royal", 35000)
+]
