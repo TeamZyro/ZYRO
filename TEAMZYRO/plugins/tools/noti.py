@@ -1,5 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import ChatPrivileges
+
 from TEAMZYRO import app
 
 @app.on_chat_member_updated()
@@ -15,17 +16,41 @@ async def admin_change_handler(client, message):
         # 🔹 Admin Promotion / Demotion
         if old_status.privileges != new_status.privileges:
             if isinstance(new_status.privileges, ChatPrivileges):  # Promoted
-                text = f"🆙 {admin_user.mention} promoted {target_user.mention} to **Admin**! ✅"
+                text = (
+                    "╭─────────────────\n"
+                    f"├─➩ {admin_user.mention}\n"
+                    f"├──── Promoted ────\n"
+                    f"├─➩ {target_user.mention}\n"
+                    "╰─────────────────"
+                )
             else:  # Demoted
-                text = f"⏬ {admin_user.mention} demoted {target_user.mention} from **Admin**! ❌"
+                text = (
+                    "╭─────────────────\n"
+                    f"├─➩ {admin_user.mention}\n"
+                    f"├──── Demoted ────\n"
+                    f"├─➩ {target_user.mention}\n"
+                    "╰─────────────────"
+                )
             await client.send_message(chat_id, text)
 
         # 🔹 User Ban / Unban
         elif old_status.status == "member" and new_status.status == "kicked":
-            text = f"🚫 {admin_user.mention} **banned** {target_user.mention}! ❌"
+            text = (
+                "╭─────────────────\n"
+                f"├─➩ {admin_user.mention}\n"
+                f"├──── Banned ────\n"
+                f"├─➩ {target_user.mention}\n"
+                "╰─────────────────"
+            )
             await client.send_message(chat_id, text)
 
         elif old_status.status == "kicked" and new_status.status == "member":
-            text = f"✅ {admin_user.mention} **unbanned** {target_user.mention}!"
+            text = (
+                "╭─────────────────\n"
+                f"├─➩ {admin_user.mention}\n"
+                f"├──── Unbanned ────\n"
+                f"├─➩ {target_user.mention}\n"
+                "╰─────────────────"
+            )
             await client.send_message(chat_id, text)
 
