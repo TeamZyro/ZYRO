@@ -79,7 +79,7 @@ async def update_karma(chat_id: int, name: str, karma: dict):
 
 
 async def is_karma_on(chat_id: int) -> bool:
-    chat = my_db.find_one({"chat_id_toggle": chat_id})
+    chat = my_db["karma_settings"].find_one({"chat_id_toggle": chat_id})  # Ensure you have the correct collection name
     if not chat:
         return True
     return False
