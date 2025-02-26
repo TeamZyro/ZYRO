@@ -3,13 +3,11 @@ from typing import Any
 from typing import Dict, List, Union
 from pymongo import MongoClient
 from telegram import user ,chat
-from TEAMZYRO import MONGO_URL
+from config import MONGO_DB_URI
 import itertools
 
-my_client = MongoClient(host=MONGO_URL)
+my_client = MongoClient(host=MONGO_DB_URI)
 my_db = my_client["aki-db"]
-
-
 
 async def int_to_alpha(user_id: int) -> str:
     alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
