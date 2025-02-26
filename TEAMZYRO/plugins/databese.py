@@ -6,7 +6,7 @@ from telegram import User as user, Chat as chat
 from config import MONGO_DB_URI
 import itertools
 
-my_client = MongoClient(host=MONGO_DB_URI)
+my_client = MongoClient(MONGO_DB_URI)
 my_db = my_client["aki-db"]
 
 async def int_to_alpha(user_id: int) -> str:
