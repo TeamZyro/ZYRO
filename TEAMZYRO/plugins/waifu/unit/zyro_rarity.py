@@ -60,7 +60,7 @@ RARITY_R = [
     ("🪽 AMV", 50000),
 ]
 
-RARITY_R = [
+RARITY_2 = [
     ("⚪️ Common", 800),
     ("🟣 Rare", 6000),
     ("🟡 Legendary", 4000),
