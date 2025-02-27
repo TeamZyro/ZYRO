@@ -12,8 +12,8 @@ redeem_collection = db['redeem']
 
 async def get_balance(user_id):
     user_data = await user_collection.find_one({'id': user_id}, {'coins': 1})
-    return user_data.get('balance', 0), user_data.get('black_stars', 0), user_data.get('white_stars', 0), user_data.get('golden_stars', 0) if user_data else (0, 0, 0, 0)
-
+    return user_data.get('coins', 0) if user_data else 0
+    
 async def update_balance(user_id, amount):
     # Fetch the user's current balance
     user_data = await user_collection.find_one({'id': user_id}, {'coins': 1})
