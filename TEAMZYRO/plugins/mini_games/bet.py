@@ -50,7 +50,7 @@ async def roll(client, message: Message):
 
     # Ensure balance is a number
     try:
-        balance_amount = float(user_data.get('balance', 0))  # Convert to float
+        balance_amount = float(user_data.get('coins', 0))  # Convert to float
     except ValueError:
         await message.reply_text(
             "Invalid balance data in database. Please contact support.",
@@ -59,7 +59,7 @@ async def roll(client, message: Message):
         return
 
     # Ensure balance is stored as a number
-    await user_collection.update_one({'id': user_id}, {'$set': {'balance': balance_amount}})
+    await user_collection.update_one({'id': user_id}, {'$set': {'coins': balance_amount}})
 
     # Ensure the user is betting at least 7% of their balance
     min_bet = max(1, int(balance_amount * 0.07))  # Ensure min bet is at least 1
@@ -92,7 +92,7 @@ async def roll(client, message: Message):
         win_amount = amount * 2
         await user_collection.update_one(
             {'id': user_id},
-            {'$inc': {'balance': win_amount}}  # Ensured balance is numeric
+            {'$inc': {'coins': win_amount}}  # Ensured balance is numeric
         )
         await message.reply_text(
             f"🎲 Dice roll: `{dice_value}`\n✅ You won! `+{win_amount}` Berries!",
@@ -103,7 +103,7 @@ async def roll(client, message: Message):
         xp_change = -2
         await user_collection.update_one(
             {'id': user_id},
-            {'$inc': {'balance': -amount}}  # Ensured balance is numeric
+            {'$inc': {'coins': -amount}}  # Ensured balance is numeric
         )
         await message.reply_text(
             f"🎲 Dice roll: `{dice_value}`\n❌ You lost! `-{amount}` Berries!",
