@@ -7,8 +7,8 @@ import requests
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 
-from shivu import collection, user_collection, LOGGER, app
-from shivu import TOKEN
+from TEAMZYRO import collection, user_collection, LOGGER, app
+from config import BOT_TOKEN  as TOKEN
 
 
 GROUP_ID = [-1002289810575, -1002465116955, -1002406246046]
