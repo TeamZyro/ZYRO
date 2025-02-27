@@ -9,6 +9,9 @@ async def admin_change_handler(client, message):
     new_status = message.new_chat_member
     chat_id = message.chat.id
 
+    if old_status is None or new_status is None:
+        return
+
     if old_status.status != new_status.status:  # Detect status changes
         admin_user = message.from_user  # The admin making the change
         target_user = new_status.user  # The affected user
