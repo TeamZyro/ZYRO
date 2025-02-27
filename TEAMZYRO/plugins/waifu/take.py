@@ -115,10 +115,10 @@ async def giveb(update: Update, context: CallbackContext) -> None:
 
     # Fetch recipient's balance
     recipient_data = await user_collection.find_one({'id': recipient_id})
-    recipient_balance = int(recipient_data.get('balance', 0)) if recipient_data else 0
+    recipient_balance = int(recipient_data.get('coins', 0)) if recipient_data else 0
 
     # Update recipient balance (balance system se directly add hoga)
-    await user_collection.update_one({'id': recipient_id}, {'$set': {'balance': recipient_balance + amount}})
+    await user_collection.update_one({'id': recipient_id}, {'$set': {'coins': recipient_balance + amount}})
 
     # DM the recipient with reward details
     reward_message = f"{reason}\n\nYour Reward: ₿{amount}"
@@ -218,13 +218,13 @@ async def takeb_command(update: Update, context: CallbackContext) -> None:
         await update.message.reply_text(f"❌ User {recipient_first_name} has no balance.")
         return
 
-    recipient_balance = int(recipient_data.get('balance', 0))
+    recipient_balance = int(recipient_data.get('coins', 0))
 
     if recipient_balance < amount:
         await update.message.reply_text(f"❌ User {recipient_first_name} only has ₿{recipient_balance} berries.")
         return
 
-    await user_collection.update_one({'id': recipient_id}, {'$set': {'balance': recipient_balance - amount}})
+    await user_collection.update_one({'id': recipient_id}, {'$set': {'coins': recipient_balance - amount}})
 
     recipient_link = f"https://t.me/{recipient_username}" if recipient_username else f"https://t.me/user{recipient_id}"
     success_message = f"Success! You took ₿{amount} Berries from [{recipient_first_name}]({recipient_link})!"
