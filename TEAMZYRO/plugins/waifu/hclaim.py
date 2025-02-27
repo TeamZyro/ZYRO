@@ -50,7 +50,7 @@ async def mclaim(_, message: t.Message):
     try:
         # Ensure the user is in the correct chat
         if str(message.chat.id) != chat:
-            join_button = InlineKeyboardMarkup([[InlineKeyboardButton("Join Here", url="https://t.me/PiratesMainchat")]])
+            join_button = InlineKeyboardMarkup([[InlineKeyboardButton("Join Here", url="https://t.me/ZyropiratesMainchat")]])
             return await message.reply_text(
                 "🔔 ᴊᴏɪɴ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴄʟᴀɪᴍ ʏᴏᴜʀ �ᴀɪʟʏ ᴄʜᴀʀᴀᴄᴛᴇʀ 🔔",
                 reply_markup=join_button
