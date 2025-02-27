@@ -1,6 +1,8 @@
-from TEAMZYRO import app
+from TEAMZYRO import *
 from telegram import Update
 from telegram.ext import CommandHandler, CallbackContext
+from config import OWNER_ID
+
 
 def is_admin(user_id: int) -> bool:
     """Check if the user is an admin."""
@@ -131,6 +133,110 @@ async def giveb(update: Update, context: CallbackContext) -> None:
     
     await update.message.reply_text(success_message, parse_mode="Markdown")
 
+async def takec_command(update: Update, context: CallbackContext) -> None:
+    # Check if the user is an admin
+    if not is_admin(update.effective_user.id):
+        await update.message.reply_text("❌ You are not authorized to use this command.")
+        return
 
+    # Rest of the /takec command logic
+    if len(context.args) < 1:
+        await update.message.reply_text("❌ Usage: /takec {character_id} {reason (optional)}")
+        return
+
+    character_id = context.args[0]
+    reason = " ".join(context.args[1:]) if len(context.args) > 1 else "No reason provided."
+
+    if not update.message.reply_to_message:
+        await update.message.reply_text("❌ Please reply to a user's message to take the character from them.")
+        return
+
+    user_id = update.message.reply_to_message.from_user.id
+    user_name = update.message.reply_to_message.from_user.first_name
+
+    user = await user_collection.find_one({'id': user_id})
+    if not user:
+        await update.message.reply_text(f"❌ User {user_name} has no characters.")
+        return
+
+    character = None
+    for char in user.get('characters', []):
+        if char.get('id') == character_id:
+            character = char
+            break
+
+    if not character:
+        await update.message.reply_text(f"❌ Character with ID {character_id} not found in {user_name}'s collection.")
+        return
+
+    await user_collection.update_one(
+        {'id': user_id},
+        {'$pull': {'characters': {'id': character_id}}}
+    )
+
+    await update.message.reply_text(
+        f"✅ Character {character['name']} (ID: {character['id']}) has been taken from {user_name}.\n"
+        f"📜 Reason: {reason}"
+    )
+
+    await context.bot.send_message(
+        chat_id=user_id,
+        text=f"Character {character['name']} (ID: {character['id']}) has been taken from you.\nReason: {reason}"
+    )
+
+
+async def takeb_command(update: Update, context: CallbackContext) -> None:
+    # Check if the user is an admin
+    if not is_admin(update.effective_user.id):
+        await update.message.reply_text("❌ You are not authorized to use this command.")
+        return
+
+    # Rest of the /takeb command logic
+    if not update.message.reply_to_message:
+        await update.message.reply_text("Please reply to a user to use /takeb.")
+        return
+
+    recipient = update.message.reply_to_message.from_user
+    recipient_id = recipient.id
+    recipient_first_name = recipient.first_name
+    recipient_username = recipient.username
+
+    try:
+        amount = int(context.args[0])
+    except (IndexError, ValueError):
+        await update.message.reply_text("Usage: /takeb <amount> [optional reason]")
+        return
+
+    reason = " ".join(context.args[1:]) if len(context.args) > 1 else "No reason provided."
+
+    if amount <= 0:
+        await update.message.reply_text("Amount must be a positive number!")
+        return
+
+    recipient_data = await user_collection.find_one({'id': recipient_id})
+    if not recipient_data:
+        await update.message.reply_text(f"❌ User {recipient_first_name} has no balance.")
+        return
+
+    recipient_balance = int(recipient_data.get('balance', 0))
+
+    if recipient_balance < amount:
+        await update.message.reply_text(f"❌ User {recipient_first_name} only has ₿{recipient_balance} berries.")
+        return
+
+    await user_collection.update_one({'id': recipient_id}, {'$set': {'balance': recipient_balance - amount}})
+
+    recipient_link = f"https://t.me/{recipient_username}" if recipient_username else f"https://t.me/user{recipient_id}"
+    success_message = f"Success! You took ₿{amount} Berries from [{recipient_first_name}]({recipient_link})!"
+    await update.message.reply_text(success_message, parse_mode="Markdown")
+
+    await context.bot.send_message(
+        chat_id=recipient_id,
+        text=f"₿{amount} Berries have been taken from you.\nReason: {reason}"
+    )
+
+
+application.add_handler(CommandHandler("takec", takec_command, block=False))
+application.add_handler(CommandHandler("takeb", takeb_command, block=False))
 application.add_handler(CommandHandler("giveb", giveb, block=False))
 application.add_handler(CommandHandler("givec", give_command, block=False))
