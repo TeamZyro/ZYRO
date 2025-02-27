@@ -2,10 +2,10 @@ from TEAMZYRO import *
 from TEAMZYRO import app
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from config import OWNER_ID
 from pyrogram import enums
 
 # Initialize the Pyrogram client
+OWNER_ID = [7638720582, 7638720582]
 
 # Admin check function
 def is_admin(user_id: int) -> bool:
