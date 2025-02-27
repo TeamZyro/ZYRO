@@ -6,20 +6,18 @@ from datetime import datetime, timedelta
 from TEAMZYRO import app as bot
 from TEAMZYRO import user_collection, collection, user_nguess_progress, user_guess_progress, rarity_map2, RARITY_R, db
 
-
-
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 redeem_collection = db['redeem']
 
 async def get_balance(user_id):
-    user_data = await user_collection.find_one({'id': user_id}, {'balance': 1, 'black_stars': 1, 'white_stars': 1, 'golden_stars': 1})
+    user_data = await user_collection.find_one({'id': user_id}, {'coins': 1})
     return user_data.get('balance', 0), user_data.get('black_stars', 0), user_data.get('white_stars', 0), user_data.get('golden_stars', 0) if user_data else (0, 0, 0, 0)
 
 async def update_balance(user_id, amount):
     # Fetch the user's current balance
-    user_data = await user_collection.find_one({'id': user_id}, {'balance': 1})
-    current_balance = user_data.get('balance', 0) if user_data else 0
+    user_data = await user_collection.find_one({'id': user_id}, {'coins': 1})
+    current_balance = user_data.get('coins', 0) if user_data else 0
     
     # Calculate the new balance
     new_balance = current_balance + amount
@@ -27,7 +25,7 @@ async def update_balance(user_id, amount):
     # Update the user's balance in the database
     await user_collection.update_one(
         {'id': user_id},
-        {'$set': {'balance': new_balance}},
+        {'$set': {'coins': new_balance}},
         upsert=True
     )
 
