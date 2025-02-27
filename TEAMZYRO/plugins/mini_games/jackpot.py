@@ -14,7 +14,7 @@ async def basket(bot, message):
         # Initialize user data
         user_data = {
             "user_id": user_id,
-            "balance": 0,
+            "coins": 0,
             "last_played": None,
             "plays_today": 0
         }
@@ -47,7 +47,7 @@ async def basket(bot, message):
         {"id": user_id},
         {
             "$set": {"last_played": str(today)},
-            "$inc": {"balance": coins_earned, "plays_today": 1}
+            "$inc": {"coins": coins_earned, "plays_today": 1}
         },
         return_document=ReturnDocument.AFTER
     )
@@ -56,6 +56,6 @@ async def basket(bot, message):
     await message.reply_text(
         f"Hey {message.from_user.mention}, your score is: {dice_score}.\n"
         f"You earned **{coins_earned} coins**! 🎉\n"
-        f"Your new balance is **{updated_user['balance']} coins**.",
+        f"Your new balance is **{updated_user['coins']} coins**.",
         quote=True
     )
