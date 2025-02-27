@@ -67,7 +67,7 @@ async def handle_spin_click(_, query: CallbackQuery):
     rarity = query.data.split("_")[1]  # Rarity from button
 
     cost = next((cost for r, cost in RARITY_R if r == rarity), 0)
-    user_balance, _, _, _ = await get_balance(user_id)
+    user_balance = await get_balance(user_id)  # Now expecting a single float value
 
     if user_balance >= cost:
         await update_balance(user_id, -cost)
