@@ -5,7 +5,8 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from TEAMZYRO import app
 from config import OWNER_USERNAME, LOGGER_ID, SUPPORT_CHANNEL, SUPPORT_CHAT 
-
+from TEAMZYRO.utils.formatters import get_readable_time
+from TEAMZYRO.utils.inline import help_pannel, private_panel, start_panel
 
 NEXI_VID = [
     "https://envs.sh/QjY.mp4",
@@ -38,7 +39,7 @@ async def generate_start_message(client, message):
 
     return caption, InlineKeyboardMarkup(buttons)
 
-@app.on_message(filters.command("start"))
+@app.on_message(filters.command(["start"]) & filters.private)
 async def start_command(client, message):
     caption, buttons = await generate_start_message(client, message)
     video = random.choice(NEXI_VID)  # Random video select
@@ -51,6 +52,18 @@ async def start_command(client, message):
         caption=caption,
         reply_markup=buttons
     )
+
+
+@app.on_message(filters.command(["start"]) & filters.group)
+async def start_gp(client, message: Message, _):
+    out = start_panel(_)
+    uptime = int(time.time() - _boot_)
+    await message.reply_video(
+        random.choice(NEXI_VID),
+        caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
+        reply_markup=InlineKeyboardMarkup(out),
+    )
+    return await add_served_chat(message.chat.id)
 
 # Mɪɴɪ Gᴀᴍᴇs
 # Mᴜɪsᴄ Mᴀɴᴀɢᴇᴍᴇɴᴛ Wᴀɪғᴜ Aɴᴅ Hᴜsʙᴀɴᴅᴏs Exᴛʀᴀ
