@@ -20,7 +20,7 @@ def start_panel(_):
 
 def private_panel(_):
     buttons = [
-        [InlineKeyboardButton("sᴜᴍᴍᴏɴ ᴍᴇ", url=f"https://t.me/{bot_user.username}?startgroup=true")],
+        [InlineKeyboardButton("sᴜᴍᴍᴏɴ ᴍᴇ", url=f"https://t.me/{app.username}?startgroup=true")],
         [InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url=f"{SUPPORT_CHAT}"),  
          InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=f"{SUPPORT_CHANNEL}")],
         [InlineKeyboardButton("Pᴀɪᴅ Hᴏsᴛɪɴɢ", callback_data="host"),  
