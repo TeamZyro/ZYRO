@@ -27,10 +27,21 @@ def get_uptime():
     return f"{hours}h {minutes}m {seconds}s"
 
 @app.on_message(filters.command("help"))
-async def help_command(client, message): 
+async def help_command(client, message):
     video_path = random.choice(NEXI_VID)
-    await client.send_video(chat_id=message.chat.id, video=video_path, caption="Here is some help information:")
-    await help_menu(client, message.chat.id)  # Pass chat_id instead of message
+
+    keyboard = InlineKeyboardMarkup([
+        [InlineKeyboardButton("Help", callback_data="open_help")]  # Callback Button
+    ])
+
+    try:
+        await message.reply_video(
+            video=video_path,
+            caption="📌 **Help Menu**",
+            reply_markup=keyboard
+        )
+    except Exception as e:
+        await message.reply_text(f"❌ Error sending video: {e}")
 
 
 async def generate_start_message(client, message):
