@@ -9,16 +9,16 @@ from pyrogram import filters
 load_dotenv()
 # ------------------------------------
 # -----------------------------------------------------
-API_ID = int(getenv("API_ID"))
-API_HASH = getenv("API_HASH")
+API_ID = getenv("API_ID", "25981592")
+API_HASH = getenv("API_HASH", "709f3c9d34d83873d3c7e76cdd75b866")
 
 EVAL = list(map(int, getenv("EVAL", "7638720582 7638720582").split()))
 # ------------------------------------------------------
-BOT_TOKEN = getenv("BOT_TOKEN")
+BOT_TOKEN = getenv("BOT_TOKEN", "7726309603:AAHB-pi4qBg7Gj57kivENYPILQWNVCURvn4")
 # -------------------------------------------------------
-OWNER_USERNAME = getenv("OWNER_USERNAME","sukuna_dev")
+OWNER_USERNAME = getenv("OWNER_USERNAME","xeno_kakarot")
 # --------------------------------------------------------
-BOT_USERNAME = getenv("BOT_USERNAME" , "teamzyro_bot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "Oneforall_rebot")
 # --------------------------------------------------------
 BOT_NAME = getenv("BOT_NAME" , "TeamZyro")
 # ---------------------------------------------------------
@@ -28,7 +28,7 @@ ASSUSERNAME = getenv("ASSUSERNAME" , "TeamZyro")
 
 #---------------------------------------------------------------
 #---------------------------------------------------------------
-MONGO_DB_URI = getenv("MONGO_DB_URI", None)
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://bikash:bikash@bikash.3jkvhp7.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = getenv("DB_NAME", "Zyro")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
@@ -38,11 +38,11 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 # ----------------------------------------------------------------
 
 # ----------------------------------------------------------------
-LOGGER_ID = int(getenv("LOGGER_ID", -1002237336934))
+LOGGER_ID = int(getenv("LOGGER_ID", -1002009280180))
 CHARA_CHANNEL_ID = getenv("CHARA_CHANNEL_ID", "-1002051009747")
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
-OWNER_ID = int(getenv("OWNER_ID", 7427691214))
+OWNER_ID = int(getenv("OWNER_ID", 7078181502))
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 # ----------------------------------------------------------------
@@ -70,8 +70,8 @@ GIT_TOKEN = getenv(
 
 # ------------------------------------------------------------------------
 # -------------------------------------------------------------------------
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/ALLTYPECC")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/gitwizardbypass")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/Gaming_World_Update")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/ZyropiratesMainchat")
 # ------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # ------------------------------------
 # ------------------------------------
 # ------------------------------------
-STRING1 = getenv("STRING_SESSION", None)
+STRING1 = getenv("STRING_SESSION", "BQFa2kUAll-nw73HVWcVQhzVqNURFzbDCKSMzkqtGUxIGVonds-cbnolPt84RmV9HnGzMbuvTCo0020l1YF_UTR7B4LNfzXs_dNWAx1AM772nn_ntFGCF24WFl91YoX5TsIjJXhmna65Od5sn8YvUkeA6wZS8ljefhZzyyVnLzHCUTjSy8PM8XR0aIpWqRA1vtZwF3YcuHpGH-rvMVNzCQWKE5Bu3fL_f-fdttVWzkjxGar29FZlLiESAaVFNlYNERq_nSuOwq10QeX90rKDeMpV71R984VZu9SbQ9wgwAOsre5Bgm4CSlDXG4bdn5XVU2nP7YNCsYaLWsrEZ_E2jA3AMze_uwAAAAHYrNprAA")
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
