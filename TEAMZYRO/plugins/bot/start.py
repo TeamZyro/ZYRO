@@ -98,6 +98,23 @@ async def show_help_menu(client, query: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
+async def help_menu(client, message):
+    time.sleep(0.5)
+    buttons = [
+        [InlineKeyboardButton("Mᴜɪsᴄ", callback_data="help_music"),
+        InlineKeyboardButton("Mᴀɴᴀɢᴇᴍᴇɴᴛ", callback_data="help_management")],
+        [InlineKeyboardButton("Wᴀɪғᴜ Aɴᴅ Hᴜsʙᴀɴᴅᴏs", callback_data="help_waifu")],
+        [InlineKeyboardButton("Exᴛʀᴀ", callback_data="help_extra"),
+        InlineKeyboardButton("Mɪɴɪ Gᴀᴍᴇs", callback_data="help_minigame")],
+        [InlineKeyboardButton("⬅ Back", callback_data="back_to_home")]
+    ]
+
+    await message.edit_text(
+        "Choose a category for which you want to get help.",
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
+
+
 # 🔹 Music Help Menu
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import time
