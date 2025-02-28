@@ -44,7 +44,7 @@ async def generate_start_message(client, message):
 
     return caption, InlineKeyboardMarkup(buttons)
 
-@app.on_message(filters.command(["start"]) & filters.private)
+#@app.on_message(filters.command(["start"]) & filters.private)
 async def start_command(client, message):
     caption, buttons = await generate_start_message(client, message)
     video = random.choice(NEXI_VID)  # Random video select
@@ -59,7 +59,7 @@ async def start_command(client, message):
     )
 
 
-@app.on_message(filters.command(["start"]) & filters.group)
+#@app.on_message(filters.command(["start"]) & filters.group)
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
