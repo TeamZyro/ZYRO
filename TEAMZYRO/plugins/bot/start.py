@@ -26,6 +26,12 @@ def get_uptime():
     minutes, seconds = divmod(remainder, 60)
     return f"{hours}h {minutes}m {seconds}s"
 
+@app.on_message(filters.command("help"))
+async def help_command(client, message): 
+    video_path = random.choice(NEXI_VID)
+    await client.send_video(chat_id=message.chat.id, video=video_path, caption="Choose a category for which you want to get help.")
+    await show_help_menu(client, message)
+
 async def generate_start_message(client, message):
     bot_user = await client.get_me()
     bot_name = bot_user.first_name
