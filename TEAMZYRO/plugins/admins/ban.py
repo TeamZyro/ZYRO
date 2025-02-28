@@ -19,7 +19,7 @@ from TEAMZYRO.misc import SUDOERS
 from TEAMZYRO.core.mongo import mongodb
 from TEAMZYRO.utils.errors import capture_err
 from TEAMZYRO.utils.keyboard import ikb
-from TEAMZYRO.utils.database.memorydatabase import save_filter
+from TEAMZYRO.utils.memorydatabase import save_filter
 from TEAMZYRO.utils.functions import (
     extract_user,
     extract_user_and_reason,
