@@ -1,3 +1,5 @@
+import random
+
 import asyncio
 import re
 from pyrogram import Client, filters
@@ -7,8 +9,8 @@ from pyrogram.raw.functions.messages import DeleteHistory
 from TEAMZYRO import userbot as us, app
 from TEAMZYRO.core.userbot import assistants
 
-# Regex pattern to match Instagram links
-INSTAGRAM_LINK_PATTERN = r"(https?://(www\.)?instagram\.com/p/[A-Za-z0-9_-]+)"
+# Updated regex pattern to match any Instagram link
+INSTAGRAM_LINK_PATTERN = r"(https?://(www\.)?instagram\.com/[^ ]+)"
 
 @app.on_message(filters.text)
 async def handle_instagram_links(client: Client, message: Message):
@@ -45,4 +47,3 @@ async def handle_instagram_links(client: Client, message: Message):
             await message.reply("Sorry, I couldn't retrieve the media from the link.")
 
         await lol.delete()
-
