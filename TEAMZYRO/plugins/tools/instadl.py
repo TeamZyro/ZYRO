@@ -23,27 +23,26 @@ async def handle_instagram_links(client: Client, message: Message):
         link = message.text.strip()
 
         # Choose the bot to send the message to
-        bo = ["SaveMedia_bot"]
-        sg = random.choice(bo)
+        sg = "SaveMedia_bot"  # No need for random choice as only one bot is used
 
         try:
+            # Ensure the chat exists before sending
+            bot_chat = await us.one.get_chat(sg)
+            
             # Send the link to the SaveMedia bot
-            a = await us.one.send_message(sg, link)
-            await a.delete()
+            sent_message = await us.one.send_message(bot_chat.id, link)
         except Exception as e:
             return await lol.edit(f"<code>Error: {e}</code>")
 
-        await asyncio.sleep(7)
+        await asyncio.sleep(10)  # Wait for bot response (increase if needed)
 
-        # Check for the response from SaveMedia bot
-        async for stalk in us.one.search_messages(a.chat.id):
-            if stalk.text is None:
-                continue
-            if stalk.media:  # If the response contains media
-                await message.reply_media(stalk.media)
-                break  # Exit the loop after sending the media
-        else:
-            # If no media was found in the response
-            await message.reply("Sorry, I couldn't retrieve the media from the link.")
+        # Fetch messages sent by SaveMedia_bot
+        async for response in us.one.search_messages(bot_chat.id, limit=5):
+            if response.from_user and response.from_user.username == sg:
+                if response.media:
+                    await message.reply_document(response.document) if response.document else await message.reply_media(response.media)
+                    await lol.delete()
+                    return
 
-        await lol.delete()
+        # If no media was found
+        await lol.edit("Sorry, I couldn't retrieve the media from the link.")
