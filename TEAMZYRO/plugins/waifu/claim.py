@@ -47,7 +47,7 @@ async def hclaim(_, message: t.Message):
 
         if str(message.chat.id) != chat:
             join_button = InlineKeyboardMarkup([
-                [InlineKeyboardButton("Join Here", url="https://t.me/PiratesMainchat")]
+                [InlineKeyboardButton("Join Here", url="https://t.me/ZyropiratesMainchat")]
             ])
             return await message.reply_text(
                 "🥀 ᴊᴏɪɴ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴄʟᴀɪᴍ ʏᴏᴜʀ ᴅᴀɪʟʏ ᴄʜᴀʀᴀᴄᴛᴇʀ 😉",
