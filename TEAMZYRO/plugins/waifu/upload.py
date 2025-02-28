@@ -28,6 +28,7 @@ rarity_map = {
     10: "💝 Valentine",
     11: "🔞 Erotic",
     12: "🪽 AMV",
+    13: "🎨 Hind festival",
 }
 """
 
