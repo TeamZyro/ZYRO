@@ -9,7 +9,7 @@ from TEAMZYRO import (application,
                     user_collection, top_global_groups_collection, top_global_groups_collection, 
                     group_user_totals_collection)
  
-from TEAMZYRO import OWNER_ID, START_URL as PHOTO_URL
+from config import OWNER_ID, START_URL as PHOTO_URL
     
 async def global_leaderboard(update: Update, context: CallbackContext) -> None:
     
