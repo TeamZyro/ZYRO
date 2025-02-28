@@ -116,7 +116,7 @@ import asyncio
 
 upload_lock = asyncio.Lock()  # Lock for handling concurrent uploads
 
-@ZYRO.on_message(filters.command(["gupload"]))
+@ZYRO.on_message(filters.command(["gupload", "u", "upload"]))
 @require_power("add_character")
 async def ul(client, message):
     global upload_lock
