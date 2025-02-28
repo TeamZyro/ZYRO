@@ -1,45 +1,48 @@
-from telegram import Update, Bot
-import httpx
+import asyncio
+import re
+from pyrogram import Client, filters
+from pyrogram.types import Message
+from pyrogram.raw.functions.messages import DeleteHistory
 
-from TEAMZYRO import app
-from pyrogram import filters
+from DAXXMUSIC import userbot as us, app
+from DAXXMUSIC.core.userbot import assistants
 
-DOWNLOADING_STICKER_ID = (
-    "CAACAgEAAx0CfD7LAgACO7xmZzb83lrLUVhxtmUaanKe0_ionAAC-gADUSkNORIJSVEUKRrhHgQ"
-)
-API_URL = "https://karma-api2.vercel.app/instadl"  # API URL
+# Regex pattern to match Instagram links
+INSTAGRAM_LINK_PATTERN = r"(https?://(www\.)?instagram\.com/p/[A-Za-z0-9_-]+)"
 
-# इंस्टाग्राम लिंक का पता लगाने के लिए फ़िल्टर सेट करें
-@app.on_message(filters.text & filters.regex(r"https?://(www\.)?instagram\.com/"))
-async def instadl_auto_handler(client, message):
-    link = message.text.strip()
-    
-    try:
-        downloading_sticker = await message.reply_sticker(DOWNLOADING_STICKER_ID)
+@app.on_message(filters.text)
+async def handle_instagram_links(client: Client, message: Message):
+    if message.reply_to_message:
+        return  # Ignore replies for this handler
 
-        # API से डेटा प्राप्त करें
-        async with httpx.AsyncClient() as client:
-            response = await client.get(API_URL, params={"url": link})
-            response.raise_for_status()
-            data = response.json()
+    # Check if the message contains an Instagram link
+    if re.search(INSTAGRAM_LINK_PATTERN, message.text):
+        lol = await message.reply("<code>Processing...</code>")
+        link = message.text.strip()
 
-        if "content_url" in data:
-            content_url = data["content_url"]
-            content_type = "video" if "video" in content_url else "photo"
-            caption = f"Downloaded by {app.me.mention}"
+        # Choose the bot to send the message to
+        bo = ["SaveMedia_bot"]
+        sg = random.choice(bo)
 
-            if content_type == "photo":
-                await message.reply_photo(content_url, caption=caption)
-            elif content_type == "video":
-                await message.reply_video(content_url, caption=caption)
-            else:
-                await message.reply_text("Unsupported content type.")
+        try:
+            # Send the link to the SaveMedia bot
+            a = await us.one.send_message(sg, link)
+            await a.delete()
+        except Exception as e:
+            return await lol.edit(f"<code>Error: {e}</code>")
+
+        await asyncio.sleep(1)
+
+        # Check for the response from SaveMedia bot
+        async for stalk in us.one.search_messages(a.chat.id):
+            if stalk.text is None:
+                continue
+            if stalk.media:  # If the response contains media
+                await message.reply_media(stalk.media)
+                break  # Exit the loop after sending the media
         else:
-            await message.reply_text("Unable to fetch content. Please check the Instagram URL.")
+            # If no media was found in the response
+            await message.reply("Sorry, I couldn't retrieve the media from the link.")
 
-    except Exception as e:
-        print(e)
-        await message.reply_text("An error occurred while processing the request.")
+        await lol.delete()
 
-    finally:
-        await downloading_sticker.delete()
