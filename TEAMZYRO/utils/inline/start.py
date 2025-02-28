@@ -2,7 +2,9 @@ from pyrogram.types import InlineKeyboardButton
 
 import config
 from TEAMZYRO import app
+from config import OWNER_USERNAME, SUPPORT_CHAT, SUPPORT_CHANNEL
 
+bot_user = await app.get_me()
 
 def start_panel(_):
     buttons = [
@@ -18,18 +20,11 @@ def start_panel(_):
 
 def private_panel(_):
     buttons = [
-        [
-            InlineKeyboardButton(
-                text=_["S_B_3"],
-                url=f"https://t.me/{app.username}?startgroup=true",
-            )
-        ],
-        [
-            InlineKeyboardButton(text=_["S_B_9"], url=config.SUPPORT_CHAT),
-            InlineKeyboardButton(text=_["S_B_6"], url=config.SUPPORT_CHANNEL),
-        ],
-        [
-            InlineKeyboardButton(text=_["S_B_4"], callback_data="settings_back_helper"),
-        ],
+        [InlineKeyboardButton("sᴜᴍᴍᴏɴ ᴍᴇ", url=f"https://t.me/{bot_user.username}?startgroup=true")],
+        [InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url=f"{SUPPORT_CHAT}"),  
+         InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=f"{SUPPORT_CHANNEL}")],
+        [InlineKeyboardButton("Pᴀɪᴅ Hᴏsᴛɪɴɢ", callback_data="host"),  
+         InlineKeyboardButton("Dᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_USERNAME}")],  # ✅ Added comma here
+        [InlineKeyboardButton("ᴄᴏᴍᴍᴀɴᴅs", callback_data="open_help")]
     ]
     return buttons
