@@ -28,7 +28,7 @@ rarity_map2 = {
      "💝 Valentine": "💝",
      "🔞 Erotic": "🔞",
      "🪽 AMV": "🪽",
-     "🎨 Hind festival: "🎨",
+     "🎨 Hind festival": "🎨",
 }
 
 
@@ -61,7 +61,7 @@ RARITY_R = [
     ("💝 Valentine", 12000),
     ("🔞 Erotic", 20000),
     ("🪽 AMV", 50000),
-    ("🎨 Hind festival, 26000),
+    ("🎨 Hind festival", 26000),
 ]
 
 RARITY_2 = [
