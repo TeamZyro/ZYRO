@@ -366,7 +366,7 @@ application.add_handler(CommandHandler("removecoins", remove_coins))
 
 SPECIAL_GROUP_ID = -1002289810575
 # Define the bot's join link
-BOT_JOIN_LINK = "https://t.me/PiratesMainchat"
+BOT_JOIN_LINK = "https://t.me/ZyropiratesMainchat"
 
 async def bonus_command(update: Update, context: CallbackContext) -> None:
     try:
@@ -416,7 +416,7 @@ async def bonus_command(update: Update, context: CallbackContext) -> None:
             reply_markup = InlineKeyboardMarkup(keyboard)
 
             await update.message.reply_text(
-                f"THIS COMMMAND IS ONLY WORK IN @PiratesMainchat .🎁TO CLAIM YOUR DAILY BONUS",
+                f"THIS COMMMAND IS ONLY WORK IN @ZyropiratesMainchat .🎁TO CLAIM YOUR DAILY BONUS",
                 reply_markup=reply_markup
             )
 
