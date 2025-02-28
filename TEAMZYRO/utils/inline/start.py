@@ -4,7 +4,7 @@ import config
 from TEAMZYRO import app
 from config import OWNER_USERNAME, SUPPORT_CHAT, SUPPORT_CHANNEL
 
-bot_user = await app.get_me()
+bot_user = app.get_me()
 
 def start_panel(_):
     buttons = [
