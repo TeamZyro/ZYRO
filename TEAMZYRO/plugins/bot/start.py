@@ -14,8 +14,9 @@ from TEAMZYRO.utils.formatters import get_readable_time
 from TEAMZYRO.utils.inline import help_pannel, private_panel, start_panel
 
 NEXI_VID = [
-    "https://envs.sh/QjY.mp4",
-    "https://envs.sh/QjY.mp4"
+    "https://files.catbox.moe/j45ayi.mp4",
+    "https://files.catbox.moe/0vd3t3.mp4",
+    "https://files.catbox.moe/kmhhuz.mp4"
 ]
 
 START_TIME = time.time()
