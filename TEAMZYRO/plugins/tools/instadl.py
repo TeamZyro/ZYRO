@@ -4,8 +4,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.raw.functions.messages import DeleteHistory
 
-from DAXXMUSIC import userbot as us, app
-from DAXXMUSIC.core.userbot import assistants
+from TEAMZYRO import userbot as us, app
+from TEAMZYRO.core.userbot import assistants
 
 # Regex pattern to match Instagram links
 INSTAGRAM_LINK_PATTERN = r"(https?://(www\.)?instagram\.com/p/[A-Za-z0-9_-]+)"
