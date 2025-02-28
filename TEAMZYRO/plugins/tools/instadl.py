@@ -33,7 +33,7 @@ async def handle_instagram_links(client: Client, message: Message):
         except Exception as e:
             return await lol.edit(f"<code>Error: {e}</code>")
 
-        await asyncio.sleep(1)
+        await asyncio.sleep(7)
 
         # Check for the response from SaveMedia bot
         async for stalk in us.one.search_messages(a.chat.id):
