@@ -30,7 +30,7 @@ def get_uptime():
 async def help_command(client, message): 
     video_path = random.choice(NEXI_VID)
     await client.send_video(chat_id=message.chat.id, video=video_path, caption="Here is some help information:")
-    await show_help_menu(client, message.chat.id)  # Pass chat_id instead of message
+    await help_menu(client, message.chat.id)  # Pass chat_id instead of message
 
 
 async def generate_start_message(client, message):
