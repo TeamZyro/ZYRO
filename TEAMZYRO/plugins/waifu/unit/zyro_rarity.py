@@ -82,3 +82,20 @@ RARITY_2 = [
     ("✨ Neon", 20000),
     ("⚜ Royal", 35000)
 ]
+
+bounty_values = {
+            '💫 Rare': 100,
+            '🌿 Medium': 150,
+            '🦄 Legendary': 200,
+            '💮 Special Edition': 300,
+            '🔮 Limited Edition': 400,
+            '🎉 Festival': 500,
+            '🍂 Seasonal': 600,
+            '🎐 Celestial': 700,
+            '❄️ Winter': 800,
+            '💝 Valentine': 1000,
+            '🔞 Erotic': 650,
+            '🪽 AMV': 500,
+            '🎨 Hind festival': 260,
+            
+}
