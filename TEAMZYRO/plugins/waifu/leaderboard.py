@@ -2,18 +2,18 @@ import os
 import random
 import html
 
-from pyrogram import Client, filters
-from pyrogram.types import Message
+from telegram import Update
+from telegram.ext import CommandHandler, CallbackContext
 
-from TEAMZYRO import (app,
-                      user_collection, top_global_groups_collection, 
-                      group_user_totals_collection)
+from shivu import (application, PHOTO_URL, OWNER_ID,
+                    user_collection, top_global_groups_collection, top_global_groups_collection, 
+                    group_user_totals_collection)
 
-from config import OWNER_ID, START_IMG_URL as PHOTO_URL
+from shivu import sudo_users as SUDO_USERS 
 
-# Global Leaderboard Command
-@app.on_message(filters.command("TopGroups"))
-async def global_leaderboard(client: Client, message: Message):
+    
+async def global_leaderboard(update: Update, context: CallbackContext) -> None:
+    
     cursor = top_global_groups_collection.aggregate([
         {"$project": {"group_name": 1, "count": 1}},
         {"$sort": {"count": -1}},
@@ -30,15 +30,14 @@ async def global_leaderboard(client: Client, message: Message):
             group_name = group_name[:15] + '...'
         count = group['count']
         leaderboard_message += f'{i}. <b>{group_name}</b> ➾ <b>{count}</b>\n'
-
+    
+    
     photo_url = random.choice(PHOTO_URL)
 
-    await message.reply_photo(photo=photo_url, caption=leaderboard_message, parse_mode='html')
+    await update.message.reply_photo(photo=photo_url, caption=leaderboard_message, parse_mode='HTML')
 
-# Group Top Users Command
-@app.on_message(filters.command("ctop"))
-async def ctop(client: Client, message: Message):
-    chat_id = message.chat.id
+async def ctop(update: Update, context: CallbackContext) -> None:
+    chat_id = update.effective_chat.id
 
     cursor = group_user_totals_collection.aggregate([
         {"$match": {"group_id": chat_id}},
@@ -58,26 +57,67 @@ async def ctop(client: Client, message: Message):
             first_name = first_name[:15] + '...'
         character_count = user['character_count']
         leaderboard_message += f'{i}. <a href="https://t.me/{username}"><b>{first_name}</b></a> ➾ <b>{character_count}</b>\n'
-
+    
     photo_url = random.choice(PHOTO_URL)
 
-    await message.reply_photo(photo=photo_url, caption=leaderboard_message, parse_mode='html')
+    await update.message.reply_photo(photo=photo_url, caption=leaderboard_message, parse_mode='HTML')
 
-# Stats Command
-@app.on_message(filters.command("st"))
-async def stats(client: Client, message: Message):
-    user_count = await user_collection.count_documents({})
-    group_count = await group_user_totals_collection.distinct('group_id')
 
-    await message.reply_text(f'Total Users: {user_count}\nTotal groups: {len(group_count)}')
+async def leaderboard(update: Update, context: CallbackContext) -> None:
+    # Fetch all users with their character counts
+    cursor = user_collection.find({}, {"_id": 0, "username": 1, "first_name": 1, "characters": 1})
 
-# Send Users Document Command
-@app.on_message(filters.command("list"))
-async def send_users_document(client: Client, message: Message):
-    if str(message.from_user.id) not in SUDO_USERS:
-        await message.reply_text('Only For Sudo users...')
+    # Convert cursor to list
+    leaderboard_data = await cursor.to_list(length=None)
+
+    # Sort the list based on character count
+    leaderboard_data.sort(key=lambda x: len(x.get('characters', [])), reverse=True)
+
+    # Limit to top 10 users
+    leaderboard_data = leaderboard_data[:10]
+
+    # Prepare the leaderboard message
+    leaderboard_message = "<b>TOP 10 USERS WITH MOST CHARACTERS</b>\n\n"
+
+    for i, user in enumerate(leaderboard_data, start=1):
+        username = user.get('username', 'Unknown')
+        first_name = html.escape(user.get('first_name', 'Unknown'))
+
+        if len(first_name) > 10:
+            first_name = first_name[:15] + '...'
+        character_count = len(user.get('characters', []))  # Calculate character count
+        leaderboard_message += f'{i}. <a href="https://t.me/{username}"><b>{first_name}</b></a> ➾ <b>{character_count}</b>\n'
+    
+    photo_url = random.choice(PHOTO_URL)
+
+    await update.message.reply_photo(photo=photo_url, caption=leaderboard_message, parse_mode='HTML') 
+
+
+
+
+
+async def stats(update: Update, context: CallbackContext) -> None:
+    
+    if update.effective_user.id != OWNER_ID:
+        await update.message.reply_text("You are not authorized to use this command.")
         return
 
+    
+    user_count = await user_collection.count_documents({})
+
+
+    group_count = await group_user_totals_collection.distinct('group_id')
+
+
+    await update.message.reply_text(f'Total Users: {user_count}\nTotal groups: {len(group_count)}')
+
+
+
+
+async def send_users_document(update: Update, context: CallbackContext) -> None:
+    if str(update.effective_user.id) not in SUDO_USERS:
+        update.message.reply_text('only For Sudo users...')
+        return
     cursor = user_collection.find({})
     users = []
     async for document in cursor:
@@ -88,16 +128,13 @@ async def send_users_document(client: Client, message: Message):
     with open('users.txt', 'w') as f:
         f.write(user_list)
     with open('users.txt', 'rb') as f:
-        await message.reply_document(document=f)
+        await context.bot.send_document(chat_id=update.effective_chat.id, document=f)
     os.remove('users.txt')
 
-# Send Groups Document Command
-@app.on_message(filters.command("groups"))
-async def send_groups_document(client: Client, message: Message):
-    if str(message.from_user.id) not in SUDO_USERS:
-        await message.reply_text('Only For Sudo users...')
+async def send_groups_document(update: Update, context: CallbackContext) -> None:
+    if str(update.effective_user.id) not in SUDO_USERS:
+        update.message.reply_text('Only For Sudo users...')
         return
-
     cursor = top_global_groups_collection.find({})
     groups = []
     async for document in cursor:
@@ -109,5 +146,16 @@ async def send_groups_document(client: Client, message: Message):
     with open('groups.txt', 'w') as f:
         f.write(group_list)
     with open('groups.txt', 'rb') as f:
-        await message.reply_document(document=f)
+        await context.bot.send_document(chat_id=update.effective_chat.id, document=f)
     os.remove('groups.txt')
+
+
+application.add_handler(CommandHandler('ctop', ctop, block=False))
+application.add_handler(CommandHandler('stats', stats, block=False))
+application.add_handler(CommandHandler('TopGroups', global_leaderboard, block=False))
+
+application.add_handler(CommandHandler('list', send_users_document, block=False))
+application.add_handler(CommandHandler('groups', send_groups_document, block=False))
+
+
+application.add_handler(CommandHandler('top', leaderboard, block=False))
