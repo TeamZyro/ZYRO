@@ -12,7 +12,10 @@ rarity_map = {
     10: "💝 Valentine",
     11: "🔞 Erotic",
     12: "🪽 AMV",
-    13: "🎨 Hind festival",
+    13: "✨ Aristocratic",
+    14: "🕌 Fast edition",
+    15: "🎬 Hollywood",
+    16: "🎃 Halloween",
 }
 
 rarity_map2 = {
@@ -28,7 +31,9 @@ rarity_map2 = {
      "💝 Valentine": "💝",
      "🔞 Erotic": "🔞",
      "🪽 AMV": "🪽",
-     "🎨 Hind festival": "🎨",
+     "🕌 Fast edition": "🕌",
+     "🎬 Hollywood": "🎬",
+     "🎃 Halloween": "🎃",
 }
 
 
@@ -46,6 +51,9 @@ RARITY_MAPPING = {
     '🔞 Erotic': '🔞',
     '🪽 AMV': '🪽',
     '🎨 Hind festival': '🎨',
+    '🕌 Fast edition': '🕌',
+    '🎬 Hollywood': '🎬',
+    '🎃 Halloween': '🎃',
 }
 
 RARITY_R = [
@@ -61,7 +69,9 @@ RARITY_R = [
     ("💝 Valentine", 12000),
     ("🔞 Erotic", 20000),
     ("🪽 AMV", 50000),
-    ("🎨 Hind festival", 26000),
+    ("🕌 Fast edition", 40000),
+    ("🎬 Hollywood", 40000),
+    ("🎃 Halloween", 40000),
 ]
 
 RARITY_2 = [
@@ -96,6 +106,9 @@ bounty_values = {
             '💝 Valentine': 1000,
             '🔞 Erotic': 650,
             '🪽 AMV': 500,
-            '🎨 Hind festival': 260,
+            '🕌 Fast edition': 260,
+            '🎬 Hollywood': 400,
+            '🎃 Halloween': 500,
+          
             
 }
