@@ -16,6 +16,7 @@ format:- /upload reply character-name anime-name rarity-number
 use rarity number accordingly rarity Map
 
 rarity_map = {
+rarity_map = {
     1: "💫 Rare",
     2: "🌿 Medium",
     3: "🦄 Legendary",
@@ -28,7 +29,10 @@ rarity_map = {
     10: "💝 Valentine",
     11: "🔞 Erotic",
     12: "🪽 AMV",
-    13: "🎨 Hind festival",
+    13: "✨ Aristocratic",
+    14: "🕌 Fast edition",
+    15: "🎬 Hollywood",
+    16: "🎃 Halloween",
 }
 """
 
