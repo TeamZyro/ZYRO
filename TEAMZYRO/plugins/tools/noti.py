@@ -49,23 +49,4 @@ async def admin_change_handler(client, message):
         )
         await client.send_message(chat_id, text)
 
-    # 🔹 User Ban / Unban
-    elif old_status.status == "member" and new_status.status == "kicked":
-        text = (
-            "╭─────────────────\n"
-            f"├─➩ {admin_user.mention}\n"
-            f"├──── Banned ────\n"
-            f"├─➩ {target_user.mention}\n"
-            "╰─────────────────"
-        )
-        await client.send_message(chat_id, text)
 
-    elif old_status.status == "kicked" and new_status.status == "member":
-        text = (
-            "╭─────────────────\n"
-            f"├─➩ {admin_user.mention}\n"
-            f"├──── Unbanned ────\n"
-            f"├─➩ {target_user.mention}\n"
-            "╰─────────────────"
-        )
-        await client.send_message(chat_id, text)
