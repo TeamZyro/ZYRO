@@ -31,7 +31,7 @@ rarity_map2 = {
      "💝 Valentine": "💝",
      "🔞 Erotic": "🔞",
      "🪽 AMV": "🪽",
-     "✨ Aristocratic: "✨",
+     "✨ Aristocratic": "✨",
      "🕌 Fast edition": "🕌",
      "🎬 Hollywood": "🎬",
      "🎃 Halloween": "🎃",
