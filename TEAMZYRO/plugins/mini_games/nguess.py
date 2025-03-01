@@ -135,7 +135,7 @@ chat_filter = filters.chat(GROUP_ID)
 # Add a global streak counter
 streak_data = {"current_streak": 0, "last_correct_user": None}
 
-@app.on_message(filters.text & ~command_filter & chat_filter)
+@app.on_message(filters.text & ~command_filter & chat_filter & ~filters.regex(r"https?://(www\.)?instagram\.com/\S+"))
 async def handle_guess(client: Client, message: Message):
     chat_id = message.chat.id
     user_id = message.from_user.id
