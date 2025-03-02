@@ -196,7 +196,7 @@ def require_power(required_power):
 
 
 # Command: /sudolist
-@app.on_message(filters.command("sudolist"))
+@app.on_message(filters.command("csudolist"))
 async def sudo_list(client, message):
     if message.from_user.id != OWNER_ID:
         await message.reply_text("You do not have permission to use this command.")
