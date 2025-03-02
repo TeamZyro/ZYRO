@@ -61,7 +61,7 @@ async def remove_sudo(client, message):
     await message.reply_text(f"User `{replied_user_id}` has been removed from sudo.")
 
 # Command: /editsudo
-@app.on_message(filters.command("seditsudo") & filters.reply)
+@app.on_message(filters.command("editsudo") & filters.reply)
 async def edit_sudo(client, message):
     if message.from_user.id != OWNER_ID:
         await message.reply_text("You do not have permission to use this command.")
